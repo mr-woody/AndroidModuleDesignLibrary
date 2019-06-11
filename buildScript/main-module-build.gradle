@@ -1,0 +1,11 @@
+configModuleGradleScript(mainModuleType)
+
+getRootProject().getSubprojects().each{Project item ->
+    String projectName = (item.parent == null ? item.name : item.path.replaceFirst(":","") )
+    println "在${project.name} ${rootProject} ${item.parent.hasProperty("")} ${item.parent}  ${item.name}中，自动添加：---dependencies ${projectName}"
+
+    if(item.name != project.name &&  item.parent == rootProject && !isDebugLibraryModule(projectName)) {
+        println " ${project}  ${item.name}中，自动添加：---dependencies ${projectName}"
+        project.dependencies.add("implementation", project(":${projectName}"))
+    }
+}

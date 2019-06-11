@@ -1,0 +1,10 @@
+package com.woody.module.model;
+
+public class BEvent {
+    public String message;
+    public String data;
+    public BEvent(String message){
+        this.message = message;
+    }
+
+}
