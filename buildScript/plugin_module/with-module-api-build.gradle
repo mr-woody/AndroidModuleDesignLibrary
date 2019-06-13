@@ -1,8 +1,7 @@
 ext {
-
-    includeWithApi = {Settings settings,String moduleName ->
+    includeWithApi = {String moduleName ->
         //先正常加载这个模块
-        settings.include(moduleName)
+        include(moduleName)
 
         //找到这个模块的路径
         String originDir = project(moduleName).projectDir
@@ -34,8 +33,15 @@ ext {
             into "${targetDir}/src/main/"
         }
 
-        //修改AndroidManifest文件
-        //fileReader("${targetDir}/src/main/AndroidManifest.xml",apiName);
+        String originManifestPath = "${originDir}/src/main/AndroidManifest.xml"
+
+        def xml = new XmlParser().parse(originManifestPath)
+
+        // 访问AndroidManifest文件中manifest节点的package属性
+        def packageName = xml.attribute("package")
+
+        //修改AndroidManifest文件包路径
+        fileReader("${targetDir}/src/main/AndroidManifest.xml", "TEMPLATE_PACKAGE_NAME","${packageName}")
 
         //复制 gradle文件到新的路径，作为该模块的gradle
         copy() {
@@ -56,9 +62,48 @@ ext {
         renameApiFiles(targetDir, '.api', '.java')
 
         //正常加载新的模块
-        settings.include ":$sdkName"
+        include ":$sdkName"
 
     }
+
+    // Return the packageName for the given buildVariant
+    getPackageName = {variant ->
+        def suffix = variant.buildType.packageNameSuffix
+        def packageName = variant.productFlavors.get(0).packageName
+        if (suffix != null && !suffix.isEmpty() && suffix != "null") {
+            packageName += suffix
+        }
+        return packageName
+    }
+
+
+    /**
+     * 替换AndroidManifest里面的字段
+     */
+    fileReader = {String path,String name,String sdkName ->
+        def readerString = ""
+        def hasReplace = false
+
+        file(path).withReader('UTF-8') { reader ->
+            reader.eachLine {
+                if (it.find(name)) {
+                    it = it.replace(name, sdkName)
+                    hasReplace = true
+                }
+                readerString <<= it
+                readerString << '\n'
+            }
+
+            if (hasReplace) {
+                file(path).withWriter('UTF-8') {
+                    within ->
+                        within.append(readerString)
+                }
+            }
+            return readerString
+        }
+    }
+
 
     deleteEmptyDir = { File dir ->
         if (dir.isDirectory()) {

@@ -1,11 +1,119 @@
+apply from: "${rootProject.rootDir}/buildScript/common-build.gradle"
+
 configModuleGradleScript(mainModuleType)
 
-getRootProject().getSubprojects().each{Project item ->
-    String projectName = (item.parent == null ? item.name : item.path.replaceFirst(":","") )
-    println "在${project.name} ${rootProject} ${item.parent.hasProperty("")} ${item.parent}  ${item.name}中，自动添加：---dependencies ${projectName}"
+def assembleTask = new AssembleTask()
 
-    if(item.name != project.name &&  item.parent == rootProject && !isDebugLibraryModule(projectName)) {
-        println " ${project}  ${item.name}中，自动添加：---dependencies ${projectName}"
-        project.dependencies.add("implementation", project(":${projectName}"))
+getRootProject().getSubprojects().each{Project subProject ->
+    //判断当前任务 只有assemble任务才添加依赖
+    assembleTask = getTaskInfo(subProject)
+
+    //添加配置依赖
+    compileComponents(subProject,assembleTask)
+
+}
+
+
+
+
+/**
+ * 对当前task初始化
+ * @param project
+ * @return
+ */
+private AssembleTask getTaskInfo(Project subProject) {
+    AssembleTask assembleTask = new AssembleTask()
+    String projectName = getModuleName(subProject)
+    //当前project 为 壳app的话，标记isAssemble为false
+    if(subProject.name == project.name){
+        assembleTask.isAssemble = false
+    }
+    //当subProject.parent != rootProject的话，说明当前subProject属于pin项目，标记isAssemble为false
+    if(subProject.parent != rootProject){
+        assembleTask.isAssemble = false
+    }
+
+    //当前模块不能单独运行的时候
+    if (isAloneRunLibraryModule(projectName)){
+        assembleTask.isAssemble = false
+    }
+
+    if(!assembleTask.isAssemble){
+        log("path = ${subProject.path}，不依赖到${project.name}中，rootProject = ${rootProject}，parent = ${subProject.parent}， name = ${subProject.name}")
+    }
+
+    return assembleTask
+}
+
+
+//实体类
+class AssembleTask {
+    //表示是否可以进行动态组装dependencies,默认可以进行依赖
+    boolean isAssemble = true
+}
+
+
+//获得当前的module名字
+private String getModuleName(Project project) {
+    String projectName = (project.parent == null ? project.name : project.path.replaceFirst(":",""))
+    return projectName
+}
+
+
+//添加扩展方法
+private void compileComponents(Project subProject,AssembleTask assembleTask) {
+    if (assembleTask.isAssemble) {
+        String dependenciesName = getModuleName(subProject)
+
+        log("在${project.name}中，path = ${subProject.path}，自动添加依赖：dependencies ${dependenciesName}")
+
+        addDependencies(dependenciesName)
     }
 }
+
+//添加依赖
+private void addDependencies(String dependenciesName) {
+    def dependencyMode = (project.gradle.gradleVersion as float) >= 4.1F ? 'api' : 'compile'
+    dependenciesName = trimAll(dependenciesName)
+    log("addDependencies: trimAll " +dependencyMode +" "+ dependenciesName)
+    if (dependenciesName.startsWith(':')) { //project
+        log("addDependencies: project " + dependenciesName)
+        //读取根目录下的
+        project.dependencies.add(dependencyMode, project(dependenciesName))
+    } else { //依赖
+        log("addDependencies: dependencies " + dependenciesName)
+        project.dependencies.add(dependencyMode, project(":${dependenciesName}"))
+    }
+}
+
+
+
+//删除左右两边的不可见字符 增加配置容错性
+private String trimAll(String str) {
+    char[] value = str.toCharArray()
+    int len = value.length
+    int st = 0
+    char[] val = value
+
+    while ((st < len) && (val[st] <= ' '
+            ||  val[st] == ','
+            ||  val[st] == '\\'
+            ||  val[st] == '\r'
+            ||  val[st] == '\n'
+            ||  val[st] == '\''
+            ||  val[st] == '\"')) {
+        st++
+    }
+    while ((st < len) && (val[len - 1] <= ' '
+            ||  val[len - 1] == ','
+            ||  val[len - 1] == '\\'
+            ||  val[len - 1] == '\r'
+            ||  val[len - 1] == '\n'
+            ||  val[len - 1] == '\''
+            ||  val[len - 1] == '\"')) {
+        len--
+    }
+    return ((st > 0) || (len < value.length)) ? str.substring(st, len) : str
+}
+
+

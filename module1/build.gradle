@@ -1,4 +1,3 @@
-apply from: "${rootProject.rootDir}/buildScript/common-build.gradle"
 apply from: "${rootProject.rootDir}/buildScript/library-module-build.gradle"
 
 android {
@@ -19,15 +18,15 @@ android {
 
     sourceSets {
         main {
-            if(isDebugLibraryModule(project.name)) {
+            if(isAloneRunLibraryModule(project.name)) {
                 manifest.srcFile 'src/debug/AndroidManifest.xml'
                 java.srcDirs = ['src/debug/java', 'src/main/java']
                 res.srcDirs = ['src/debug/res','src/main/res']
             } else {
                 manifest.srcFile 'src/main/AndroidManifest.xml'
                 resources {
-                    //排除java/debug文件夹下的所有文件
-                    exclude '*/debug/*'
+                    //全部Module一起编译的时候剔除debug目录
+                    exclude '**/debug/**'
                 }
             }
         }

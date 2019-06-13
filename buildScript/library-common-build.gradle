@@ -1,1 +1,2 @@
+apply from: "${rootProject.rootDir}/buildScript/common-build.gradle"
 configModuleGradleScript(libraryModuleType)

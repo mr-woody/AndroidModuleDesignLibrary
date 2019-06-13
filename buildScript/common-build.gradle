@@ -1,6 +1,7 @@
-project.ext {
+apply from: "${rootProject.rootDir}/buildScript/debug/debug-build.gradle"
+ext {
     mainModuleType = "mainModule"
-    debugLibraryModuleType = "debugLibraryModule"
+    aloneRunLibraryModuleType = "aloneRunLibraryModule"
     libraryModuleType = "libraryModule"
 
     configModuleGradleScript = { moduleType ->
@@ -10,9 +11,9 @@ project.ext {
     }
 
     applyAndroidDefaultConfig = {
-        project.android.compileSdkVersion compileSdkVersion
-        project.android.defaultConfig.targetSdkVersion targetSdkVersion
-        project.android.defaultConfig.minSdkVersion minSdkVersion
+        project.android.compileSdkVersion androids.compileSdkVersion
+        project.android.defaultConfig.targetSdkVersion androids.targetSdkVersion
+        project.android.defaultConfig.minSdkVersion androids.minSdkVersion
         project.android.defaultConfig.buildConfigField("String", "API_RELEASE_HOST", "${API_RELEASE_HOST}")
         project.android.defaultConfig.buildConfigField("String", "API_PRE_RELEASE_HOST", "${API_PRE_RELEASE_HOST}")
         project.android.defaultConfig.buildConfigField("String", "API_TEST_HOST", "${API_TEST_HOST}")
@@ -34,13 +35,13 @@ project.ext {
     applyApplicationId = { moduleType ->
         if(moduleType == mainModuleType) {
             project.android.defaultConfig.applicationId applicationId
-        } else if(moduleType == debugLibraryModuleType) {
+        } else if(moduleType == aloneRunLibraryModuleType) {
             project.android.defaultConfig.applicationId applicationId + "." + project.name
         }
     }
 
-    isDebugLibraryModule = { projectName ->
-        def debugLibraryModuleList = debugLibraryModules
-        return project.hasProperty('debugLibraryModules') && debugLibraryModuleList.indexOf(projectName) != -1
+    isAloneRunLibraryModule = { projectName ->
+        def aloneRunLibraryModuleList = aloneRunLibraryModules
+        return project.hasProperty('aloneRunLibraryModules') && aloneRunLibraryModuleList.indexOf(projectName) != -1
     }
 }

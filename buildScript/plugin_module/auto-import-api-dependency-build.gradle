@@ -1,0 +1,35 @@
+apply from: "${rootProject.rootDir}/buildScript/debug/debug-build.gradle"
+ext {
+    //自动添加***-api依赖
+    autoImportApiDependency = { extension -> //extension project对象
+        def children = project.rootProject.childProjects
+        //遍历所有child project
+        children.each { child ->
+            //判断 是否同时存在 *** module 和 ***-api module
+            if (child.key.contains("-api") && children.containsKey(child.key.substring(0, child.key.length() - 4))) {
+
+                def targetKey = child.key.substring(0, child.key.length() - 4)
+                def targetProject = children[targetKey]
+
+                targetProject.afterEvaluate {
+
+                    //通过打印 所有dependencies，推断需要添加如下两个依赖
+                    targetProject.dependencies.add("implementation", targetProject.dependencies.create(project(":" + child.key)))
+                    targetProject.dependencies.add("implementationDependenciesMetadata", targetProject.dependencies.create(project(":" + child.key)))
+
+                    //打印 module 添加的依赖
+                    if (isDebug()) {
+                        targetProject.configurations.each { configuration ->
+                            configuration.allDependencies.each { dependency ->
+                                log(configuration.name + "--->" + dependency.group + ":" + dependency.name + ":" + dependency.version)
+                            }
+                        }
+                    }
+                }
+
+            }
+
+        }
+    }
+
+}

@@ -11,8 +11,5 @@ project(':common-sdk').projectDir = new File("common-component/common-sdk/")
 include ':common-business'
 include ':common-resource'
 
-include ':module1',
-        ':module2'
-
-includeWithApi(getSettings(),":module1")
-includeWithApi(getSettings(),":module2")
+includeWithApi(":module1")
+includeWithApi(":module2")

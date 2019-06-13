@@ -1,6 +1,7 @@
+apply from: "${rootProject.rootDir}/buildScript/common-build.gradle"
 def getModuleType() {
-    if(isDebugLibraryModule(project.name)) {
-        return debugLibraryModuleType
+    if(isAloneRunLibraryModule(project.name)) {
+        return aloneRunLibraryModuleType
     } else {
         return libraryModuleType
     }
