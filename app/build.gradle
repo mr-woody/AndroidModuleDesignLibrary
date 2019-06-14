@@ -1,4 +1,3 @@
-apply from: "${rootProject.rootDir}/buildScript/common-build.gradle"
 apply from: "${rootProject.rootDir}/buildScript/main-module-build.gradle"
 
 android {
