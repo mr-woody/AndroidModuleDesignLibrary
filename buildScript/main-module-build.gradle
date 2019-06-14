@@ -24,7 +24,7 @@ getRootProject().getSubprojects().each{Project subProject ->
 private AssembleTask getTaskInfo(Project subProject) {
     AssembleTask assembleTask = new AssembleTask()
     String projectName = getModuleName(subProject)
-    //当前project 为 壳app的话，标记isAssemble为false
+    //当前project 为 壳app的时候，标记isAssemble为false
     if(subProject.name == project.name){
         assembleTask.isAssemble = false
     }
@@ -33,7 +33,13 @@ private AssembleTask getTaskInfo(Project subProject) {
         assembleTask.isAssemble = false
     }
 
-    //当前模块不能单独运行的时候
+    //当前project为自动生成后缀"-api"的library时，标记isAssemble为false
+    if(subProject.name.contains("-api")){
+        assembleTask.isAssemble = false
+    }
+
+
+    //当前模块能单独运行的时候，标记isAssemble为false
     if (isAloneRunLibraryModule(projectName)){
         assembleTask.isAssemble = false
     }
