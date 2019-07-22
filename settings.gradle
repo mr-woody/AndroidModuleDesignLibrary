@@ -8,6 +8,10 @@ project(':common-ui').projectDir = new File("common-component/common-ui/")
 include ':common-sdk'
 project(':common-sdk').projectDir = new File("common-component/common-sdk/")
 
+include ':component-annotation'
+include ':component-compiler'
+
+
 include ':common-business'
 include ':common-resource'
 

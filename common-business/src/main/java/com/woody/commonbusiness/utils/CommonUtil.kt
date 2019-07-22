@@ -1,4 +1,4 @@
-package com.sihaixuan.base.util
+package com.sihaixuan.base.utils
 
 import android.app.Activity
 import android.view.View
