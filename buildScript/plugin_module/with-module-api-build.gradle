@@ -18,6 +18,9 @@ ext {
         // 每次编译删除之前的文件
         deleteDir(targetDir)
 
+        println originDir
+        println targetDir
+
         //复制.api文件到新的路径
         copy() {
             from originDir
@@ -40,8 +43,8 @@ ext {
         // 访问AndroidManifest文件中manifest节点的package属性
         def packageName = xml.attribute("package")
 
-        //修改AndroidManifest文件包路径
-        fileReader("${targetDir}/src/main/AndroidManifest.xml", "TEMPLATE_PACKAGE_NAME","${packageName}")
+        //修改AndroidManifest文件包路径,并且后面需要多添加.api,为了防止BuildConfig冲突
+        fileReader("${targetDir}/src/main/AndroidManifest.xml", "TEMPLATE_PACKAGE_NAME","${packageName}.api")
 
         //复制 gradle文件到新的路径，作为该模块的gradle
         copy() {
@@ -107,20 +110,20 @@ ext {
 
     deleteEmptyDir = { File dir ->
         if (dir.isDirectory()) {
-            File[] fs = dir.listFiles();
+            File[] fs = dir.listFiles()
             if (fs != null && fs.length > 0) {
                 for (int i = 0; i < fs.length; i++) {
-                    File tmpFile = fs[i];
+                    File tmpFile = fs[i]
                     if (tmpFile.isDirectory()) {
-                        deleteEmptyDir(tmpFile);
+                        deleteEmptyDir(tmpFile)
                     }
                     if (tmpFile.isDirectory() && tmpFile.listFiles().length <= 0) {
-                        tmpFile.delete();
+                        tmpFile.delete()
                     }
                 }
             }
             if (dir.isDirectory() && dir.listFiles().length == 0) {
-                dir.delete();
+                dir.delete()
             }
         }
     }

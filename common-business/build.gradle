@@ -1,7 +1,5 @@
 apply from: "${rootProject.rootDir}/buildScript/library-common-build.gradle"
 
-apply plugin: 'kotlin-kapt'
-
 android {
     defaultConfig {
         versionCode 1
@@ -20,12 +18,4 @@ android {
 dependencies {
     api fileTree(dir: 'libs', include: ['*.jar'])
     implementation rootProject.ext.dependencies.kotlinStdlibJdk7
-
-
-    api project(path: ':component-annotation')
-
-    kapt project(':component-compiler')
-    annotationProcessor project(':component-compiler')
-
-
 }

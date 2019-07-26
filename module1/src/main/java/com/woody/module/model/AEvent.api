@@ -7,4 +7,5 @@ public class AEvent {
         this.message = message;
     }
 
+
 }

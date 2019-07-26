@@ -14,10 +14,6 @@ ext {
         project.android.compileSdkVersion androids.compileSdkVersion
         project.android.defaultConfig.targetSdkVersion androids.targetSdkVersion
         project.android.defaultConfig.minSdkVersion androids.minSdkVersion
-        project.android.defaultConfig.buildConfigField("String", "API_RELEASE_HOST", "${API_RELEASE_HOST}")
-        project.android.defaultConfig.buildConfigField("String", "API_PRE_RELEASE_HOST", "${API_PRE_RELEASE_HOST}")
-        project.android.defaultConfig.buildConfigField("String", "API_TEST_HOST", "${API_TEST_HOST}")
-        project.android.defaultConfig.buildConfigField("String", "API_DEV_HOST", "${API_DEV_HOST}")
     }
 
     applyPlugin = { moduleType ->
@@ -42,6 +38,6 @@ ext {
 
     isAloneRunLibraryModule = { projectName ->
         def aloneRunLibraryModuleList = aloneRunLibraryModules
-        return project.hasProperty('aloneRunLibraryModules') && aloneRunLibraryModuleList.indexOf(projectName) != -1
+        return project.hasProperty('aloneRunLibraryModules') && !aloneRunLibraryModuleList.isEmpty() && aloneRunLibraryModuleList.indexOf(projectName) != -1
     }
 }

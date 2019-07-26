@@ -25,4 +25,14 @@ dependencies {
     androidTestImplementation rootProject.ext.dependencies.testRunner
     androidTestImplementation rootProject.ext.dependencies.testEspressoCore
 
+    implementation project(":common-business")
+
+    addComponent 'module1'
+
+    //addComponent 'module2', 'com.okay.demo:demo_2:1.1.0'
+    addComponent 'module2'
+
+
+
+
 }

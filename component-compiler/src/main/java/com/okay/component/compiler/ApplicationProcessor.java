@@ -1,6 +1,5 @@
 package com.okay.component.compiler;
 
-import com.google.auto.service.AutoService;
 import com.okay.component.annotation.RegistApplication;
 import com.squareup.javapoet.JavaFile;
 import com.squareup.javapoet.TypeSpec;
@@ -13,22 +12,19 @@ import javax.annotation.processing.AbstractProcessor;
 import javax.annotation.processing.Filer;
 import javax.annotation.processing.Messager;
 import javax.annotation.processing.ProcessingEnvironment;
-import javax.annotation.processing.Processor;
 import javax.annotation.processing.RoundEnvironment;
-import javax.annotation.processing.SupportedSourceVersion;
 import javax.lang.model.SourceVersion;
 import javax.lang.model.element.Element;
 import javax.lang.model.element.Modifier;
 import javax.lang.model.element.TypeElement;
 import javax.lang.model.util.Elements;
 
-@AutoService(Processor.class)
-@SupportedSourceVersion(SourceVersion.RELEASE_7)
 public class ApplicationProcessor extends AbstractProcessor {
     private Messager mMessager;
     private Filer mFiler;
     private Elements mElements;
 
+    @Override
     public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
         Set<? extends Element> elements = roundEnv.getElementsAnnotatedWith(RegistApplication.class);
         if (elements.size() == 0) {
@@ -48,6 +44,7 @@ public class ApplicationProcessor extends AbstractProcessor {
         return false;
     }
 
+    @Override
     public synchronized void init(ProcessingEnvironment processingEnv) {
         super.init(processingEnv);
         this.mMessager = processingEnv.getMessager();
@@ -55,12 +52,14 @@ public class ApplicationProcessor extends AbstractProcessor {
         this.mElements = processingEnv.getElementUtils();
     }
 
+    @Override
     public Set<String> getSupportedAnnotationTypes() {
         Set<String> annotations = new LinkedHashSet();
         annotations.add(RegistApplication.class.getCanonicalName());
         return annotations;
     }
 
+    @Override
     public SourceVersion getSupportedSourceVersion() {
         return SourceVersion.latest();
     }

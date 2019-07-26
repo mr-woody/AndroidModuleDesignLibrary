@@ -1,6 +1,6 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
-    apply from: 'buildScript/config/config.gradle'
+    apply from: 'config/config.gradle'
     apply from: 'buildScript/plugin_module/auto-import-api-dependency-build.gradle'
     repositories {
         maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
@@ -15,7 +15,7 @@ buildscript {
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
-
+    //自动添加***-api依赖
     ext.autoImportApiDependency(this)
 }
 

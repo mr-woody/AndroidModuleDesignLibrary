@@ -14,7 +14,7 @@ public class ApplicationDelegate {
 
     private static List<String> getApplicationDelegates(Application baseContext){
         if(applicationDelegates == null){
-            applicationDelegates = ClazzUtils.getClassNames(baseContext, "com.okay.supercross.apt");
+            applicationDelegates = ClazzUtils.getClassNames(baseContext, "com.okay.component.apt");
         }
         return applicationDelegates;
     }
