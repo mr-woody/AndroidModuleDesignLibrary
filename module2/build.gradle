@@ -50,4 +50,7 @@ dependencies {
     api project(':component-annotation')
     kapt project(':component-compiler')
     annotationProcessor project(':component-compiler')
+
+    kapt 'com.okay.router.compiler:router-compiler:1.0.0-20190724.031423-2'
+    annotationProcessor 'com.okay.router.compiler:router-compiler:1.0.0-20190724.031423-2'
 }

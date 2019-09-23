@@ -7,19 +7,27 @@ ext {
         String originDir = project(moduleName).projectDir
         //这个是新的路径
         String targetDir = "${originDir}-api"
+
+
+        //假如当前项目中没有.api文件，那么就不需要执行后面的操作
+        FileTree tempFileTree = fileTree(originDir).exclude('**/build/').exclude('**/res/').include('**/*.api').include('**/*.kapi')
+        if(tempFileTree.size()<=0){
+            File targetDirFile= new File(targetDir)
+            if(targetDirFile && targetDirFile.exists()){
+                targetDirFile.deleteDir()
+            }
+            return
+        }
+
+
         //新模块的路径
         def sdkName = "${project(moduleName).name}-api"
-        //新模块名字
-        String apiName = "${moduleName.substring(1, moduleName.length())}-api"
 
         //这个是公共模块的位置，我预先放了一个 ApiBuildGralde.gradle 文件进去
         String apiGradle = "${rootProject.projectDir}/buildScript/"
 
         // 每次编译删除之前的文件
         deleteDir(targetDir)
-
-        println originDir
-        println targetDir
 
         //复制.api文件到新的路径
         copy() {
@@ -28,6 +36,7 @@ ext {
             exclude '**/build/'
             exclude '**/res/'
             include '**/*.api'
+            include '**/*.kapi'
         }
 
         //直接复制公共模块的AndroidManifest文件到新的路径，作为该模块的文件
@@ -63,6 +72,8 @@ ext {
 
         // 重命名.api文件，生成正常的.java文件
         renameApiFiles(targetDir, '.api', '.java')
+        // 重命名.kapi文件，生成正常的.kt文件
+        renameApiFiles(targetDir, '.kapi', '.kt')
 
         //正常加载新的模块
         include ":$sdkName"

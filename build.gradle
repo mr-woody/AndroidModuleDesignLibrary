@@ -5,6 +5,7 @@ buildscript {
     repositories {
         maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
         maven { url 'http://maven.aliyun.com/nexus/content/repositories/jcenter' }
+        maven{ url "http://10.60.0.100:8081/repository/okayclient_snapshot/"}
         google()
         jcenter()
 
@@ -23,6 +24,7 @@ allprojects {
     repositories {
         maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
         maven { url 'http://maven.aliyun.com/nexus/content/repositories/jcenter' }
+        maven{ url "http://10.60.0.100:8081/repository/okayclient_snapshot/"}
         google()
         jcenter()
 
@@ -32,3 +34,65 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+
+/*
+appConfig {
+
+    debugEnable false
+
+    apps {
+        app {
+            mainActivity "com.tangpj.tasks.TasksActivity"
+            applicationName = "com.tangpj.superlib.App2"
+            modules ':modules:addtask',
+                    ':modules:taskdetail',
+                    ':modules:tasks',
+                    ':modules:statistics'
+        }
+
+        app2 {
+            name 'nostatistic'
+            mainActivity "com.tangpj.tasks.TasksActivity"
+            applicationId 'com.tangpj.nostatistic'
+            modules ':modules:addtask',
+                    ':modules:taskdetail',
+                    ':modules:tasks'
+        }
+
+    }
+
+    modules {
+        addtask {
+            name ":modules:addtask"
+            applicationId "com.tangpj.addtask"
+            mainActivity ".AddEditTaskActivity"
+            applicationName = "com.tangpj.superlib.App2"
+            isRunAlone true
+        }
+
+        taskdetail {
+            name ":modules:taskdetail"
+            applicationId "com.tangpj.taskdetail"
+            mainActivity ".TaskDetailActivity"
+            applicationName = "com.tangpj.superlib.App1"
+            isRunAlone false
+        }
+
+
+        task {
+            name ":modules:tasks"
+            applicationId "com.tangpj.tasks"
+            mainActivity ".TasksActivity"
+            isRunAlone false
+        }
+
+        statistics {
+            name ":modules:statistics"
+            applicationId "com.tangpj.statistics"
+            mainActivity ".StatisticsActivity"
+            isRunAlone false
+        }
+    }
+}
+ */

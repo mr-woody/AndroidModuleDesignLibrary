@@ -1,16 +1,23 @@
-package com.woody.commonbusiness.application;
+package com.okay.component.api;
 
 import android.app.Application;
+import android.content.Context;
 import android.content.res.Configuration;
+import android.support.multidex.MultiDex;
 
 public class BaseApplication extends Application {
-    public static Application application;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        application = this;
         ApplicationDelegate.onApplicationCreate(this);
+    }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(base);
+        ApplicationDelegate.onApplicationAttachBaseContext(this);
     }
 
     @Override

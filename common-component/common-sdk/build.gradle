@@ -17,4 +17,7 @@ android {
 
 dependencies {
     api fileTree(dir: 'libs', include: ['*.jar'])
+    api 'com.okay.router:router-api:1.0.0-20190724.025004-3'
+
+
 }

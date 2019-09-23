@@ -1,0 +1,21 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion rootProject.ext.androids.compileSdkVersion
+    defaultConfig {
+        targetSdkVersion rootProject.ext.androids.targetSdkVersion
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    api project(':component-annotation')
+    //多Dex编译库
+    api 'com.android.support:multidex:1.0.3'
+}

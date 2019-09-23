@@ -1,4 +1,4 @@
-package com.woody.commonbusiness.application;
+package com.okay.component.api;
 
 import android.app.Application;
 import android.content.res.Configuration;
@@ -7,7 +7,16 @@ import android.content.res.Configuration;
  * 模块化，module生命周期管理类
  */
 public interface IApplicationLife {
+
+    int MIN_PRIORITY = 1;
+    int NORM_PRIORITY = 5;
+    int MAX_PRIORITY = 10;
+
+    int getPriority();
+
     void onCreate(Application application);
+
+    void attachBaseContext(Application application);
 
     void onTerminate(Application application);
 

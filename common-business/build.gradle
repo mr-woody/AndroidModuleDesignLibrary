@@ -18,4 +18,12 @@ android {
 dependencies {
     api fileTree(dir: 'libs', include: ['*.jar'])
     implementation rootProject.ext.dependencies.kotlinStdlibJdk7
+
+    api project(':common-sdk')
+    api project(':component-impl')
+
+    implementation "com.android.support:support-annotations:${versions.supportLibraryVersion}"
+    implementation "com.android.support:appcompat-v7:${versions.supportLibraryVersion}"
+
+
 }

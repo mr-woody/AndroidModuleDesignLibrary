@@ -6,14 +6,17 @@ ext {
 
     configModuleGradleScript = { moduleType ->
         applyPlugin(moduleType)
-        applyAndroidDefaultConfig()
+        applyAndroidDefaultConfig(moduleType)
         applyApplicationId(moduleType)
     }
 
-    applyAndroidDefaultConfig = {
+    applyAndroidDefaultConfig = { moduleType ->
         project.android.compileSdkVersion androids.compileSdkVersion
         project.android.defaultConfig.targetSdkVersion androids.targetSdkVersion
         project.android.defaultConfig.minSdkVersion androids.minSdkVersion
+        if(moduleType == mainModuleType) {
+            project.android.defaultConfig.multiDexEnabled androids.multiDexEnabled
+        }
     }
 
     applyPlugin = { moduleType ->
@@ -33,6 +36,17 @@ ext {
             project.android.defaultConfig.applicationId applicationId
         } else if(moduleType == aloneRunLibraryModuleType) {
             project.android.defaultConfig.applicationId applicationId + "." + project.name
+        }
+
+        configurations.all {
+            resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+                def requested = details.requested
+                if (requested.group == 'com.android.support') {
+                    if (!requested.name.startsWith("multidex")) {
+                        details.useVersion versions.supportLibraryVersion
+                    }
+                }
+            }
         }
     }
 
