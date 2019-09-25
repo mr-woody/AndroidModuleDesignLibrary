@@ -6,8 +6,6 @@ android {
         versionName "1.0"
     }
 
-    resourcePrefix "common_" //给 Module 内的资源名增加前缀, 避免资源名冲突
-
     buildTypes {
         release {
             minifyEnabled false
@@ -18,5 +16,6 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation rootProject.ext.dependencies.appcompatV7
 }
 

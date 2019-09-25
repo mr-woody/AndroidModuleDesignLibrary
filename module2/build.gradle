@@ -35,7 +35,8 @@ dependencies {
     androidTestImplementation rootProject.ext.dependencies.testRunner
     androidTestImplementation rootProject.ext.dependencies.testEspressoCore
 
-    api project(":common-business")
+    implementation project(":common-business")
+    implementation project(":common-resource")
 
 
     api project(':component-annotation')
