@@ -9,6 +9,7 @@ import org.gradle.api.Project
  */
 class AppConfig {
 
+
     boolean debugEnable = false
     NamedDomainObjectContainer<AppExtension> apps
     NamedDomainObjectContainer<LibraryExtension> modules
