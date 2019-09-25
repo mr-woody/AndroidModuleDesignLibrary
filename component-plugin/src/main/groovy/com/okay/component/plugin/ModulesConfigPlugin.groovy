@@ -2,9 +2,10 @@ package com.okay.component.plugin
 
 import com.android.build.gradle.AppPlugin
 import com.android.build.gradle.LibraryPlugin
-import com.okay.component.plugin.extensions.AppConfigExt
-import com.okay.component.plugin.extensions.AppExt
-import com.okay.component.plugin.extensions.LibraryExt
+import com.okay.component.plugin.config.Constants
+import com.okay.component.plugin.extensions.AppConfig
+import com.okay.component.plugin.extensions.AppExtension
+import com.okay.component.plugin.extensions.LibraryExtension
 import com.okay.component.plugin.manifest.AppManifestStrategy
 import com.okay.component.plugin.manifest.LibraryManifestStrategy
 import org.gradle.api.NamedDomainObjectContainer
@@ -19,46 +20,43 @@ import java.util.stream.Collectors
  */
 class ModulesConfigPlugin implements Plugin<Project> {
 
-    private static final String PARENT_EXTENSION_NAME = "appConfig"
-
     @Override
     void apply(Project project) {
-        AppConfigExt appConfigExt = getAppConfigExtension(project)
-        configModules(project, appConfigExt)
+        AppConfig appConfig = getAppConfigExtension(project)
+        configModules(project, appConfig)
     }
 
-    static void configModules(Project project, AppConfigExt appConfigExt){
-        if (appConfigExt == null){
-            throw new NullPointerException("can not find appConfig")
+    static void configModules(Project project, AppConfig appConfig){
+        if (appConfig == null){
+            throw new NullPointerException("can not find " + Constants.EXTENSION_NAME)
         }
-        List<AppExt> filterList = appConfigExt.apps.stream()
+        List<AppExtension> filterList = appConfig.apps.stream()
                 .filter{ (it.name.startsWith(':') ? it.name : new String(":" + it.name)).endsWith(project.name) }
                 .skip(0).collect()
 
         if (filterList != null && filterList.size() > 0){
-            AppExt appExt = filterList.get(0)
+            AppExtension appExt = filterList.get(0)
             AppPlugin appPlugin = project.plugins.apply(AppPlugin)
             appPlugin.extension.defaultConfig.setApplicationId(appExt.applicationId)
             AppManifestStrategy strategy = new AppManifestStrategy(project)
-            strategy.resetManifest(appExt, appPlugin, appConfigExt.isDebugEnable())
-            dependModules(project, appExt, appConfigExt)
+            strategy.resetManifest(appExt, appPlugin, appConfig.isDebugEnable())
+            dependModules(project, appExt, appConfig)
         }else {
-            modulesRunAlone(project,appConfigExt.modules, appConfigExt.debugEnable)
+            modulesRunAlone(project,appConfig.modules, appConfig.debugEnable)
         }
 
     }
 
-    static void dependModules(Project project, AppExt appExt, AppConfigExt appConfigExt){
-        Map<String,LibraryExt> moduleExtMap = appConfigExt.modules.stream().filter{
+    static void dependModules(Project project, AppExtension appExt, AppConfig appConfig){
+        Map<String,LibraryExtension> moduleExtMap = appConfig.modules.stream().filter{
             modules ->
                 String modulesName = appExt.modules.stream().find{ it.contains(modules.name) }
                 modulesName != null && !modulesName.isEmpty()
-        }.collect(Collectors.toMap({ it.name},{ it -> it}))
+        }.collect(Collectors.toMap({ it.name.startsWith(':') ? it.name : new String(":" + it.name)},{ it -> it}))
 
         if (appExt.modules != null && appExt.modules.size() > 0){
             List<String> modulesList = appExt.modules.stream()
-                    .filter{
-                appConfigExt.debugEnable ? (moduleExtMap != null && !moduleExtMap[it].isRunAlone) : true }
+                    .filter{ appConfig.debugEnable ? (moduleExtMap != null && !moduleExtMap[it].isRunAlone) : true }
                     .map{
                          project.dependencies.add(appExt.dependMethod, project.project(it))
                          it
@@ -67,9 +65,9 @@ class ModulesConfigPlugin implements Plugin<Project> {
         }
     }
 
-    AppConfigExt getAppConfigExtension(Project project){
+    AppConfig getAppConfigExtension(Project project){
         try{
-            return project.parent.extensions.getByName(PARENT_EXTENSION_NAME) as AppConfigExt
+            return project.parent.extensions.getByName(Constants.EXTENSION_NAME) as AppConfig
         }catch (UnknownDomainObjectException ignored){
             if (project.parent != null){
                 getAppConfigExtension(project.parent)
@@ -79,10 +77,10 @@ class ModulesConfigPlugin implements Plugin<Project> {
         }
     }
 
-    private static void modulesRunAlone(Project project, NamedDomainObjectContainer<LibraryExt> modules, boolean isDebug){
-        List<LibraryExt> filterList = modules.stream().filter{ it.name.endsWith(project.name) }.skip(0).collect()
+    private static void modulesRunAlone(Project project, NamedDomainObjectContainer<LibraryExtension> modules, boolean isDebug){
+        List<LibraryExtension> filterList = modules.stream().filter{ it.name.endsWith(project.name) }.skip(0).collect()
         if (filterList != null && filterList.size() > 0){
-            LibraryExt moduleExt = filterList.get(0)
+            LibraryExtension moduleExt = filterList.get(0)
 
             if (isDebug && moduleExt.isRunAlone){
                 AppPlugin appPlugin = project.plugins.apply(AppPlugin)

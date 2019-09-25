@@ -1,6 +1,6 @@
 package com.okay.component.plugin.manifest
 
-import com.okay.component.plugin.extensions.ModulesExt
+import com.okay.component.plugin.extensions.ModulesExtension
 
 import org.gradle.api.Project
 
@@ -11,7 +11,7 @@ class LibraryManifestStrategy extends ManifestStrategy{
     }
 
     @Override
-    void setApplication(def application, ModulesExt modulesExt) {
+    void setApplication(def application, ModulesExtension modulesExt) {
         if(!modulesExt.isRunAlone || modulesExt.applicationName == null || modulesExt.applicationName.isEmpty()) {
             application.each{
                 it.attributes().remove("android:name")

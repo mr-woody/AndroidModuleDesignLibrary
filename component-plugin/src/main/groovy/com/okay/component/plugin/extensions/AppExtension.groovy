@@ -4,11 +4,11 @@ package com.okay.component.plugin.extensions
  * Created by yuetao.
  * App配置，配置App的基础信息
  */
-class AppExt extends ModulesExt{
+class AppExtension extends ModulesExtension{
     String dependMethod = "implementation"
     List<String> modules = new ArrayList<>()
 
-    AppExt(String name) {
+    AppExtension(String name) {
         super(name)
     }
 

@@ -4,11 +4,13 @@ package com.okay.component.plugin.extensions
  * Created by yuetao.
  * 库配置，用于配置库的基础信息
  */
-class LibraryExt extends ModulesExt{
+class LibraryExtension extends ModulesExtension{
+    // 是否独立运行
     boolean isRunAlone = false
+    // 该moudle所依赖的子模块
     String runAloneSuper
 
-    LibraryExt(String name) {
+    LibraryExtension(String name) {
         super(name)
     }
 

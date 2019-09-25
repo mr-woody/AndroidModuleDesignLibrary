@@ -2,8 +2,8 @@ package com.okay.component.plugin.manifest
 
 import com.android.build.gradle.AppPlugin
 import com.android.build.gradle.BasePlugin
-import com.okay.component.plugin.extensions.LibraryExt
-import com.okay.component.plugin.extensions.ModulesExt
+import com.okay.component.plugin.extensions.LibraryExtension
+import com.okay.component.plugin.extensions.ModulesExtension
 
 import org.gradle.api.Project
 
@@ -22,8 +22,8 @@ abstract class ManifestStrategy {
     ManifestStrategy(Project project){
         this.project = project
         path = "${project.getBuildFile().getParent()}/src/main/AndroidManifest.xml"
-        outputGroupPath = "${project.getBuildFile().getParent()}/calces"
-        outputPath = "${project.getBuildFile().getParent()}/calces/AndroidManifest.xml"
+        outputGroupPath = "${project.getBuildFile().getParent()}/components"
+        outputPath = "${project.getBuildFile().getParent()}/components/AndroidManifest.xml"
         File manifestFile = new File(path)
         if (!manifestFile.getParentFile().exists() && !manifestFile.getParentFile().mkdirs()){
             println "Unable to find AndroidManifest and create fail, please manually create"
@@ -31,10 +31,10 @@ abstract class ManifestStrategy {
         manifest = new XmlSlurper(false,false).parse(manifestFile)
     }
 
-    abstract void setApplication(def application, ModulesExt modulesExt)
+    abstract void setApplication(def application, ModulesExtension modulesExt)
     abstract void setMainIntentFilter(def activity, boolean isFindMain)
 
-    void resetManifest(ModulesExt moduleExt, BasePlugin appPlugin, boolean isDebug){
+    void resetManifest(ModulesExtension moduleExt, BasePlugin appPlugin, boolean isDebug){
         setApplication(manifest.application, moduleExt)
         if(manifest.@package != moduleExt.applicationId && moduleExt.applicationId != null && !moduleExt.applicationId.isEmpty()){
             manifest.@package = moduleExt.applicationId
@@ -72,7 +72,7 @@ abstract class ManifestStrategy {
         buildModulesManifest(manifest, moduleExt, appPlugin, isDebug)
     }
 
-    void addMainActivity(def application, ModulesExt modulesExt){
+    void addMainActivity(def application, ModulesExtension modulesExt){
         if (modulesExt.mainActivity != null && !modulesExt.mainActivity.isEmpty()){
             application.appendNode{
                 activity('android:name': modulesExt.mainActivity){
@@ -86,13 +86,13 @@ abstract class ManifestStrategy {
 
     }
 
-    void buildModulesManifest(def manifestFile, ModulesExt moduleExt, BasePlugin appPlugin, boolean isDebug) {
+    void buildModulesManifest(def manifestFile, ModulesExtension moduleExt, BasePlugin appPlugin, boolean isDebug) {
         println ":${moduleExt.name}cleanBuildModulesManifest"
         def outputGroupFile = new File(outputGroupPath)
         if (outputGroupFile.exists()){
             outputGroupFile.deleteDir()
         }
-        if ((moduleExt instanceof LibraryExt) && !((moduleExt as LibraryExt).isRunAlone && isDebug)){
+        if ((moduleExt instanceof LibraryExtension) && !((moduleExt as LibraryExtension).isRunAlone && isDebug)){
             return
         }
 

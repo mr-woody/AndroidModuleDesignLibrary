@@ -6,9 +6,9 @@ import android.util.Log;
 
 import com.okay.component.annotation.RegistApplication;
 import com.okay.component.api.IApplicationLife;
+import com.okay.module1.RouterRuleCreator;
 import com.okay.router.annotation.RouteConfig;
 import com.okay.router.configs.RouterConfiguration;
-import com.okay.user.RouterRuleCreator;
 import com.okay.user.config.ModuleConfig;
 
 @RegistApplication

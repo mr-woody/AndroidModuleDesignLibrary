@@ -3,6 +3,7 @@ buildscript {
     apply from: 'config/config.gradle'
     apply from: 'buildScript/plugin_module/auto-import-api-dependency-build.gradle'
     repositories {
+        mavenLocal()
         maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
         maven { url 'http://maven.aliyun.com/nexus/content/repositories/jcenter' }
         maven{ url "http://10.60.0.100:8081/repository/okayclient_snapshot/"}
@@ -13,6 +14,7 @@ buildscript {
     dependencies {
         classpath "com.android.tools.build:gradle:${versions.gradleVersion}"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlinVersion}"
+        classpath "com.okay.component.plugin:component-plugin:1.0.0-SNAPSHOT"
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -22,6 +24,7 @@ buildscript {
 
 allprojects {
     repositories {
+        mavenLocal()
         maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
         maven { url 'http://maven.aliyun.com/nexus/content/repositories/jcenter' }
         maven{ url "http://10.60.0.100:8081/repository/okayclient_snapshot/"}
@@ -36,63 +39,42 @@ task clean(type: Delete) {
 }
 
 
-/*
+apply plugin: 'com.okay.appconfig.plugin'
 appConfig {
 
-    debugEnable false
+    debugEnable true
 
     apps {
         app {
-            mainActivity "com.tangpj.tasks.TasksActivity"
-            applicationName = "com.tangpj.superlib.App2"
-            modules ':modules:addtask',
-                    ':modules:taskdetail',
-                    ':modules:tasks',
-                    ':modules:statistics'
+            mainActivity "com.woody.module.module1.Module1MainActivity"
+            applicationName = "com.woody.module.application.App1"
+            modules ':module1'
         }
 
         app2 {
-            name 'nostatistic'
-            mainActivity "com.tangpj.tasks.TasksActivity"
-            applicationId 'com.tangpj.nostatistic'
-            modules ':modules:addtask',
-                    ':modules:taskdetail',
-                    ':modules:tasks'
+            name ':app2'
+            mainActivity "com.woody.module.module2.Module2MainActivity"
+            //applicationId 'com.okay.module2'
+            modules ':module1',
+                    ':module2'
         }
 
     }
 
     modules {
-        addtask {
-            name ":modules:addtask"
-            applicationId "com.tangpj.addtask"
-            mainActivity ".AddEditTaskActivity"
-            applicationName = "com.tangpj.superlib.App2"
+        module {
+            name ":module1"
+            applicationId "com.woody.module.module1"
+            mainActivity ".Module1MainActivity"
+            applicationName = "com.woody.commonbusiness.application.CommonApplication"
             isRunAlone true
         }
 
-        taskdetail {
-            name ":modules:taskdetail"
-            applicationId "com.tangpj.taskdetail"
-            mainActivity ".TaskDetailActivity"
-            applicationName = "com.tangpj.superlib.App1"
-            isRunAlone false
-        }
-
-
-        task {
-            name ":modules:tasks"
-            applicationId "com.tangpj.tasks"
-            mainActivity ".TasksActivity"
-            isRunAlone false
-        }
-
-        statistics {
-            name ":modules:statistics"
-            applicationId "com.tangpj.statistics"
-            mainActivity ".StatisticsActivity"
+        module2 {
+            applicationId "com.woody.module.module2"
+            mainActivity ".Module2MainActivity"
+            applicationName = "com.woody.commonbusiness.application.CommonApplication"
             isRunAlone false
         }
     }
 }
- */

@@ -1,7 +1,14 @@
-apply from: "${rootProject.rootDir}/buildScript/main-module-build.gradle"
+//apply plugin: 'com.android.application'
+apply plugin: 'com.okay.modules.plugin'
+
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 android {
+    compileSdkVersion rootProject.ext.androids.compileSdkVersion as int
     defaultConfig {
+        minSdkVersion rootProject.ext.androids.minSdkVersion
+        targetSdkVersion rootProject.ext.androids.targetSdkVersion
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -27,12 +34,10 @@ dependencies {
 
     implementation project(":common-business")
 
-    addComponent 'module1'
+    //addComponent 'module1'
 
     //addComponent 'module2', 'com.okay.demo:demo_2:1.1.0'
-    addComponent 'module2'
-
-
+    //addComponent 'module2'
 
 
 }

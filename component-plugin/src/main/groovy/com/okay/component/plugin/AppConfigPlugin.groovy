@@ -1,8 +1,9 @@
 package com.okay.component.plugin
 
-import com.okay.component.plugin.extensions.AppConfigExt
-import com.okay.component.plugin.extensions.AppExt
-import com.okay.component.plugin.extensions.LibraryExt
+import com.okay.component.plugin.config.Constants
+import com.okay.component.plugin.extensions.AppConfig
+import com.okay.component.plugin.extensions.AppExtension
+import com.okay.component.plugin.extensions.LibraryExtension
 import org.gradle.api.NamedDomainObjectContainer
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -11,24 +12,25 @@ import org.gradle.api.Project
  */
 class AppConfigPlugin implements Plugin<Project> {
 
-    private static final String EXTENSION_NAME = "appConfig"
-
     @Override
     void apply(Project project) {
-        AppConfigExt appConfigExt = new AppConfigExt(project)
-        project.extensions.add(EXTENSION_NAME, appConfigExt)
-        configApp(project)
+        if (project == project.rootProject) {
+            project.extensions.add(Constants.EXTENSION_NAME, new AppConfig(project))
+            configApp(project)
+        }else {
+            throw new RuntimeException(" Plug(${Constants.APP_CONFIG_PLUGIN_NAME}) can only be used in build.gradle files in the rootProject directory")
+        }
     }
 
     void configApp(Project project) {
         List<String> moduleList = new ArrayList<>()
-        NamedDomainObjectContainer<AppExt> appList
-        AppConfigExt appConfigExt
+        NamedDomainObjectContainer<AppExtension> appList
+        AppConfig appConfig
         project.afterEvaluate {
-            appConfigExt = project.extensions.getByName(EXTENSION_NAME) as AppConfigExt
-            appList = appConfigExt.apps
-            checkRepeat(appConfigExt)
-            checkModules(appConfigExt,moduleList)
+            appConfig = project.extensions.getByName(Constants.EXTENSION_NAME) as AppConfig
+            appList = appConfig.apps
+            checkRepeat(appConfig)
+            checkModules(appConfig,moduleList)
 
         }
         initChildModules(moduleList, project)
@@ -49,9 +51,9 @@ class AppConfigPlugin implements Plugin<Project> {
 
     }
 
-    static void checkRepeat(AppConfigExt appConfigExt){
-        Map<String,List<AppExt>> appGroupMap =
-                appConfigExt.apps.groupBy{ it.name.startsWith(':') ? it.name : new String(":" + it.name)}
+    static void checkRepeat(AppConfig appConfig){
+        Map<String,List<AppExtension>> appGroupMap =
+                appConfig.apps.groupBy{ it.name.startsWith(':') ? it.name : new String(":" + it.name)}
 
         appGroupMap.forEach{
             k,v ->
@@ -60,8 +62,8 @@ class AppConfigPlugin implements Plugin<Project> {
                 }
         }
 
-        Map<String,List<LibraryExt>> moduleGroupMap =
-                appConfigExt.modules.groupBy{ it.name.startsWith(':') ? it.name : new String(":" + it.name)}
+        Map<String,List<LibraryExtension>> moduleGroupMap =
+                appConfig.modules.groupBy{ it.name.startsWith(':') ? it.name : new String(":" + it.name)}
 
         moduleGroupMap.forEach{
             k,v ->
@@ -72,7 +74,7 @@ class AppConfigPlugin implements Plugin<Project> {
 
     }
 
-    static void checkModules(AppConfigExt appConfigExt,
+    static void checkModules(AppConfig appConfig,
                              List<String> projectModules){
         Set<String> configSet = new HashSet<>()
         Set<String> modulesSet = new HashSet<>()
@@ -81,18 +83,18 @@ class AppConfigPlugin implements Plugin<Project> {
         }
         List<String> notFoundList = new ArrayList<>()
 
-        List<String> appNameList = appConfigExt.apps
+        List<String> appNameList = appConfig.apps
                 .stream()
                 .map{it.name.startsWith(':') ? it.name : new String(":" + it.name)}.collect()
 
         List<String> moduleNameList =
-                appConfigExt.modules.
+                appConfig.modules.
                         stream().
                         map{
                             String name = it.name.startsWith(':') ? it.name : new String(":" + it.name)
                             if (appNameList.contains(name)){
                                 throw new IllegalArgumentException("$it.name already configured " +
-                                        "as an application, please check appConfig")
+                                        "as an application, please check "+ Constants.EXTENSION_NAME)
                             }
                             name
                         }.
@@ -114,7 +116,7 @@ class AppConfigPlugin implements Plugin<Project> {
             )
         }
 
-        appConfigExt.apps.stream().forEach{ app ->
+        appConfig.apps.stream().forEach{ app ->
             app.modules.stream().forEach{
                 if (! configSet.contains(it)){
                     throw  new IllegalArgumentException(

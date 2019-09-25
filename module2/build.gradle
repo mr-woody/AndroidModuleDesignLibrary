@@ -1,8 +1,14 @@
-apply from: "${rootProject.rootDir}/buildScript/library-module-build.gradle"
+//apply plugin: 'com.android.library'
+apply plugin: 'com.okay.modules.plugin'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
+    compileSdkVersion rootProject.ext.androids.compileSdkVersion as int
     defaultConfig {
+        minSdkVersion rootProject.ext.androids.minSdkVersion
+        targetSdkVersion rootProject.ext.androids.targetSdkVersion
         versionCode 1
         versionName "1.0"
 
@@ -16,21 +22,6 @@ android {
         }
     }
 
-    sourceSets {
-        main {
-            if(isAloneRunLibraryModule(project.name)) {
-                manifest.srcFile 'src/standalone/AndroidManifest.xml'
-                java.srcDirs = ['src/standalone/java', 'src/main/java']
-                res.srcDirs = ['src/standalone/res','src/main/res']
-            } else {
-                manifest.srcFile 'src/main/AndroidManifest.xml'
-                resources {
-                    //全部Module一起编译的时候剔除debug目录
-                    exclude '**/standalone/**'
-                }
-            }
-        }
-    }
 }
 
 dependencies {

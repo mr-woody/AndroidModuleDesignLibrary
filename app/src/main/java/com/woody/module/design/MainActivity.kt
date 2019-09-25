@@ -3,7 +3,7 @@ package com.woody.module.design
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.okay.router.Router
-import com.okay.user.config.ModuleConfig
+import com.woody.module.config.ModuleConfig
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
