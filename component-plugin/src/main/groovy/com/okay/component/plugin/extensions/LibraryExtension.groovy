@@ -7,8 +7,8 @@ package com.okay.component.plugin.extensions
 class LibraryExtension extends ModulesExtension{
     // 是否独立运行
     boolean isRunAlone = false
-    // 该moudle所依赖的子模块
-    String runAloneSuper
+    // 该moudle独立运行时所依赖的子模块
+    List<String> runAloneChildModules = new ArrayList<>()
 
     LibraryExtension(String name) {
         super(name)
@@ -32,8 +32,8 @@ class LibraryExtension extends ModulesExtension{
         this.applicationName = applicationName
     }
 
-    def runAloneSuper(String runAloneSuper){
-        this.runAloneSuper = runAloneSuper
+    def runAloneChildModules(String... modules){
+        this.runAloneChildModules.addAll(modules)
     }
 
     def mainActivity(String mainActivity){
@@ -43,6 +43,6 @@ class LibraryExtension extends ModulesExtension{
     @Override
     String toString() {
         return "name = $name, isRunAlone = $isRunAlone, applicationId = $applicationId, " +
-                "runAloneSuper = $runAloneSuper, mainActivity = $mainActivity"
+                "runAloneChildModules = $runAloneChildModules, mainActivity = $mainActivity"
     }
 }

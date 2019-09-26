@@ -48,15 +48,18 @@ appConfig {
         app {
             mainActivity "com.woody.module.module1.Module1MainActivity"
             applicationName = "com.woody.module.application.App1"
-            modules ':module1'
+            modules ':module1',
+                    'com.okay.cache:cache-library:1.0.3-20190529.073900-1'
         }
 
         app2 {
             name ':app2'
-            mainActivity "com.woody.module.module2.Module2MainActivity"
+            //mainActivity "com.woody.module.module2.Module2MainActivity"
+            mainActivity ".MainActivity"
             //applicationId 'com.okay.module2'
             modules ':module1',
                     ':module2'
+
         }
 
     }
@@ -68,6 +71,8 @@ appConfig {
             mainActivity ".Module1MainActivity"
             applicationName = "com.woody.commonbusiness.application.CommonApplication"
             isRunAlone true
+            runAloneChildModules ':module2',
+                    'com.okay.cache:cache-library:1.0.3-20190529.073900-1'
         }
 
         module2 {

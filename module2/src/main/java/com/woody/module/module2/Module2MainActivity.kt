@@ -14,5 +14,6 @@ class Module2MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_module2_main)
 
         val event : BEvent = BEvent("测试B")
+
     }
 }

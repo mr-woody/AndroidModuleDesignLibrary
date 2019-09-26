@@ -3,11 +3,13 @@ package com.okay.component.plugin
 import com.android.build.gradle.AppPlugin
 import com.android.build.gradle.LibraryPlugin
 import com.okay.component.plugin.config.Constants
+import com.okay.component.plugin.config.DependentType
 import com.okay.component.plugin.extensions.AppConfig
 import com.okay.component.plugin.extensions.AppExtension
 import com.okay.component.plugin.extensions.LibraryExtension
 import com.okay.component.plugin.manifest.AppManifestStrategy
 import com.okay.component.plugin.manifest.LibraryManifestStrategy
+import com.okay.component.plugin.utils.DependentsUtil
 import org.gradle.api.NamedDomainObjectContainer
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -56,9 +58,9 @@ class ModulesConfigPlugin implements Plugin<Project> {
 
         if (appExt.modules != null && appExt.modules.size() > 0){
             List<String> modulesList = appExt.modules.stream()
-                    .filter{ appConfig.debugEnable ? (moduleExtMap != null && !moduleExtMap[it].isRunAlone) : true }
+                    .filter{ DependentsUtil.getDependencyType(it) == DependentType.REMOTE || (appConfig.debugEnable ? (moduleExtMap != null && !moduleExtMap[it].isRunAlone) : true) }
                     .map{
-                         project.dependencies.add(appExt.dependMethod, project.project(it))
+                         project.dependencies.add(appExt.dependMethod, DependentsUtil.getDependencyName(project,it))
                          it
             }.collect()
             println("build app: [$appExt.name] , depend modules: $modulesList")
@@ -85,9 +87,11 @@ class ModulesConfigPlugin implements Plugin<Project> {
             if (isDebug && moduleExt.isRunAlone){
                 AppPlugin appPlugin = project.plugins.apply(AppPlugin)
                 appPlugin.extension.defaultConfig.setApplicationId(moduleExt.applicationId)
-                if (moduleExt.runAloneSuper != null && !moduleExt.runAloneSuper.isEmpty()){
-                    project.dependencies.add("implementation", project.project(moduleExt.runAloneSuper))
-                    println("build run alone modules: [$moduleExt.name], runSuper = $moduleExt.runAloneSuper")
+                if (moduleExt.runAloneChildModules != null && moduleExt.runAloneChildModules.size() > 0){
+                    moduleExt.runAloneChildModules.each {
+                        project.dependencies.add("implementation", DependentsUtil.getDependencyName(project,it))
+                    }
+                    println("build run alone modules: [$moduleExt.name], runAloneChildModules = $moduleExt.runAloneChildModules")
                 }else{
                     println("build run alone modules: [$moduleExt.name]")
                 }

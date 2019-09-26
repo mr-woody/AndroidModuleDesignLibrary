@@ -1,9 +1,11 @@
 package com.okay.component.plugin
 
 import com.okay.component.plugin.config.Constants
+import com.okay.component.plugin.config.DependentType
 import com.okay.component.plugin.extensions.AppConfig
 import com.okay.component.plugin.extensions.AppExtension
 import com.okay.component.plugin.extensions.LibraryExtension
+import com.okay.component.plugin.utils.DependentsUtil
 import org.gradle.api.NamedDomainObjectContainer
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -118,7 +120,7 @@ class AppConfigPlugin implements Plugin<Project> {
 
         appConfig.apps.stream().forEach{ app ->
             app.modules.stream().forEach{
-                if (! configSet.contains(it)){
+                if (!configSet.contains(it) && DependentsUtil.getDependencyType(it)!= DependentType.REMOTE){
                     throw  new IllegalArgumentException(
                             "appConfig error , can not find $app.name modules $it by project" )
                 }
