@@ -8,7 +8,7 @@ package com.woody.module2.config
 class ModuleConfig {
 
     object Module2{
-        const val SCHEME = "route"
+        const val SCHEME = "router"
         const val HOST = "$SCHEME://scheme.woody.module2/"
         const val PACKAGE = "com.woody.module2"
 
