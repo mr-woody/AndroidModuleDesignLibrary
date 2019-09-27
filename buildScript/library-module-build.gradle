@@ -1,9 +1,0 @@
-apply from: "${rootProject.rootDir}/buildScript/common-build.gradle"
-def getModuleType() {
-    if(isAloneRunLibraryModule(project.name)) {
-        return aloneRunLibraryModuleType
-    } else {
-        return libraryModuleType
-    }
-}
-configModuleGradleScript(getModuleType())

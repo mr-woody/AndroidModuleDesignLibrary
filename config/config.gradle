@@ -1,5 +1,5 @@
 ext {
-    applicationId = 'com.woody.module.design'
+    applicationId = 'com.woody.module1.demo.design'
 
     androids = [
             compileSdkVersion: 26,

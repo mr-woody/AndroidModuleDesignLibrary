@@ -11,6 +11,8 @@ android {
         targetSdkVersion rootProject.ext.androids.targetSdkVersion
         versionCode 1
         versionName "1.0"
+        // Enabling multidex support.
+        multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -33,10 +35,5 @@ dependencies {
     androidTestImplementation rootProject.ext.dependencies.testEspressoCore
 
     implementation project(":common-business")
-
-    //addComponent 'module1'
-
-    //addComponent 'module2', 'com.okay.demo:demo_2:1.1.0'
-    //addComponent 'module2'
 
 }

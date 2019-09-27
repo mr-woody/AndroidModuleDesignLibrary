@@ -9,11 +9,9 @@ project(':common-ui').projectDir = new File("common-component/common-ui/")
 include ':common-sdk'
 project(':common-sdk').projectDir = new File("common-component/common-sdk/")
 
-include ':component-annotation'
-include ':component-compiler'
 include ':component-impl'
 include ':component-plugin'
-include ':lifecycle-plugin'
+include ':autoregister-plugin'
 
 
 include ':common-business'
