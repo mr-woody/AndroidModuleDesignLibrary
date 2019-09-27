@@ -15,7 +15,18 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    api project(':component-annotation')
     //多Dex编译库
     api 'com.android.support:multidex:1.0.3'
 }
+
+ext {
+    //component-plugin
+    pom_project = [
+            version : '1.0.0-SNAPSHOT',
+            group_id : "com.okay.component.api",
+            artifact_id : "component-impl",
+            description : "Android component-impl library"
+    ]
+}
+
+apply from: "../upload.gradle"

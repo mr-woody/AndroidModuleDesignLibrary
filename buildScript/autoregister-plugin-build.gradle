@@ -1,0 +1,14 @@
+apply plugin: 'com.okay.auto-register'
+
+ext.registerInfoList = [
+        [
+                'scanInterface'             : 'com.okay.component.api.IApplicationLife'
+                , 'codeInsertToClassName'   : 'com.okay.component.api.ApplicationManager'
+                , 'registerMethodName'      : 'register' //非static方法
+        ]
+]
+
+autoregister {
+    registerInfo = registerInfoList
+    cacheEnabled = true
+}
