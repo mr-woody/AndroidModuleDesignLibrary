@@ -1,11 +1,11 @@
 apply plugin: 'com.okay.appconfig.plugin'
 appConfig {
 
-    debugEnable true
+    debugEnable false
 
     apps {
         app {
-            mainActivity "com.woody.module1.Module1MainActivity"
+            //mainActivity "com.woody.module1.Module1MainActivity"
             applicationName = "com.woody.module1.demo.application.App1"
             modules ':module1',
                     'com.okay.cache:cache-library:1.0.3-20190529.073900-1'
