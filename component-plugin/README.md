@@ -112,22 +112,22 @@ apply plugin: 'com.okay.modules.plugin'
 
 ## 属性介绍
 
-> AppConfig
+> appConfig
 
 - debugEnable, 布尔值
   是否开个debug模式，只有当debugEnbale为true时，modules的isRunAlone才能生效。即modoules只能在debug模式中独立启动
   
 - apps, String列表
-  app列表，控制当debug模式为false时的app数量与基础配置
+  app列表
   
 - modules, String列表
   组件列表，配置需要实现自动组件化控制的组件列表
   
 
-> App（apps里面的配置项)
+> apps
 
 - name, String类型
-  app的名字，需要和项目路径对应，如果不填写默认为该配置的名字（如配置名为app的话，name则为:name）。导入规则和setting.gradle中的include规则保持一致
+  app的名字，需要和项目路径对应，如果不填写默认为该配置的名字（如配置名为app的话，name则为:name）
 - modules, String列表
   需要依赖的组件列表，通过修改该属性实现依赖不同的组件
 - dependMethod, String类型
@@ -140,7 +140,7 @@ apply plugin: 'com.okay.modules.plugin'
   配置启动Activity，为空则默认为AndroidManifest中的Activity。非特殊情况，建议为空
 
 
-> Modules（modules里的配置项)
+> modules
 
 - name, String类型
   与app中的name一致
