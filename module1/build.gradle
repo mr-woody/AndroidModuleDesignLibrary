@@ -15,6 +15,16 @@ android {
 
     }
 
+    flavorDimensions("default")
+    productFlavors{
+        full{
+            dimension "default"
+        }
+        simple{
+            dimension "default"
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -42,3 +52,16 @@ dependencies {
     kapt 'com.okay.router.compiler:router-compiler:1.0.0-20190724.031423-2'
     annotationProcessor 'com.okay.router.compiler:router-compiler:1.0.0-20190724.031423-2'
 }
+
+
+ext {
+    //component-plugin
+    pom_project = [
+            version : '1.0.0-SNAPSHOT',
+            group_id : "com.woody.module1",
+            artifact_id : "module1",
+            description : "Android module1 library"
+    ]
+}
+
+apply from : "../buildScript/maven/maven_upload_config.gradle"

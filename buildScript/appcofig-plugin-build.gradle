@@ -1,7 +1,7 @@
 apply plugin: 'com.okay.appconfig.plugin'
 appConfig {
 
-    debugEnable true
+    debugEnable false
 
     apps {
         app {
