@@ -67,6 +67,11 @@ afterEvaluate {
             from sourceDirs
         }
 
+        artifacts {
+            archives javadocJar
+            archives sourcesJar
+        }
+
         def upload = tasks.create("uploadArchives${variant.name.capitalize()}", Upload){
             configuration = configurations.archives
             repositories {
@@ -135,8 +140,8 @@ afterEvaluate {
         upload.dependsOn(findBundleTask(variantName))
         upload.doFirst {
             artifacts{
-                archives javadocJar
-                archives sourcesJar
+                //archives javadocJar
+                //archives sourcesJar
                 archives findBundleTask(variantName)
             }
         }
