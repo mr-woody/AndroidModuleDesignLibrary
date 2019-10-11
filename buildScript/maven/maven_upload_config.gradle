@@ -24,7 +24,7 @@ afterEvaluate {
 
         def artifactIdSuffix = hasFlavors ? variant.flavorName.replace('_', '-').capitalize() : ''
         variant.productFlavors.each { flavor ->
-            def flavorArtifactIdSuffix = flavor.name
+            def flavorArtifactIdSuffix = flavor.ext.has('artifactIdSuffix') ? flavor.ext.artifactIdSuffix : flavor.name
             if (!flavorArtifactIdSuffix.isEmpty()) {
                 artifactIdSuffix = artifactIdSuffix.replace(flavor.name.capitalize(), "${flavorArtifactIdSuffix}")
             } else {
@@ -120,17 +120,34 @@ afterEvaluate {
                                     }
                                 }
                             }
+
+                            if (!it.transitive) {
+                                def exclusionNode = dependencyNode.appendNode('exclusions').appendNode('exclusion')
+                                exclusionNode.appendNode('groupId', '*')
+                                exclusionNode.appendNode('artifactId', '*')
+                            } else if (!it.properties.excludeRules.empty) {
+                                def exclusionsNode = dependencyNode.appendNode('exclusions')
+                                it.properties.excludeRules.each { rule ->
+                                    def exclusionNode = exclusionsNode.appendNode('exclusion')
+                                    exclusionNode.appendNode('groupId', rule.group ?: '*')
+                                    exclusionNode.appendNode('artifactId', rule.module ?: '*')
+                                }
+                            }
                         }
                         // Add deps that everyone has
-                        configurations.api.allDependencies.each addDep
-                        configurations.implementation.allDependencies.each addDep
+                        configurations.api.getDependencies().each addDep
+                        configurations.implementation.getDependencies().each addDep
+
+                        configurations["${variant.buildType.name}Implementation"].getDependencies().each addDep
+                        configurations["${variant.buildType.name}Api"].getDependencies().each addDep
+
                         // Add flavor specific deps
                         if (!variant.flavorName.isEmpty()) {
-                            configurations["${variant.name}Implementation"].allDependencies.each addDep
-                            configurations["${variant.name}Api"].allDependencies.each addDep
+                            configurations["${variant.name}Implementation"].getDependencies().each addDep
+                            configurations["${variant.name}Api"].getDependencies().each addDep
                             def flavorName = variant.flavorName
-                            configurations["${flavorName}Implementation"].allDependencies.each addDep
-                            configurations["${flavorName}Api"].allDependencies.each addDep
+                            configurations["${flavorName}Implementation"].getDependencies().each addDep
+                            configurations["${flavorName}Api"].getDependencies().each addDep
                         }
                     }
                 }
@@ -140,8 +157,6 @@ afterEvaluate {
         upload.dependsOn(findBundleTask(variantName))
         upload.doFirst {
             artifacts{
-                //archives javadocJar
-                //archives sourcesJar
                 archives findBundleTask(variantName)
             }
         }
