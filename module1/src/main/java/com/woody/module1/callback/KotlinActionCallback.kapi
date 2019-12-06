@@ -1,6 +1,0 @@
-package com.woody.module1.callback
-
-interface KotlinActionCallback {
-    fun run()
-    fun action(param: String): Int
-}
