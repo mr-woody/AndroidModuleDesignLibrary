@@ -1,12 +1,13 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
     apply from: 'config/config.gradle'
-    apply from: 'buildScript/plugin_module/auto-import-api-dependency-build.gradle'
+    apply from: 'buildScript/plugin/api/auto-import-api-dependency-build.gradle'
     repositories {
         mavenLocal()
         maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
         maven { url 'http://maven.aliyun.com/nexus/content/repositories/jcenter' }
         maven{ url "http://10.60.0.100:8081/repository/okayclient_snapshot/"}
+        maven{ url "http://10.60.0.100:8081/repository/okayclient/"}
         google()
         jcenter()
 
@@ -16,6 +17,8 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlinVersion}"
         classpath "com.okay.component.plugin:component-plugin:1.0.0-SNAPSHOT"
         classpath "com.okay.register.plugin:autoregister-plugin:1.0.0-SNAPSHOT"
+
+        classpath 'com.okay.upload.plugin:upload-plugin:1.0.3'//本地maven
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -29,6 +32,8 @@ allprojects {
         maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
         maven { url 'http://maven.aliyun.com/nexus/content/repositories/jcenter' }
         maven{ url "http://10.60.0.100:8081/repository/okayclient_snapshot/"}
+        //umeng
+        maven { url 'http://dl.bintray.com/umsdk/release' }
         google()
         jcenter()
 
@@ -39,6 +44,8 @@ task clean(type: Delete) {
     delete rootProject.buildDir
 }
 
-apply from: 'buildScript/appcofig-plugin-build.gradle'
-apply from: 'buildScript/autoregister-plugin-build.gradle'
+//按照源码的方式进行配置
+apply from: 'buildScript/plugin/module_cofig/appcofig-local-plugin-build.gradle'
+//动态注入代码，解决IApplicationLife动态注册的问题
+apply from: 'buildScript/plugin/autoregister/autoregister-plugin-build.gradle'
 

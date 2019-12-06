@@ -38,6 +38,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation rootProject.ext.dependencies.kotlinStdlibJdk7
+    implementation rootProject.ext.dependencies.kotlinScriptRuntime
     implementation rootProject.ext.dependencies.appcompatV7
     implementation rootProject.ext.dependencies.constraintLayout
 

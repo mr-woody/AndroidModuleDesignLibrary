@@ -44,6 +44,7 @@ ext {
 
     dependencies = [
             kotlinStdlibJdk7: "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${versions.kotlinVersion}",
+            kotlinScriptRuntime: "org.jetbrains.kotlin:kotlin-script-runtime:${versions.kotlinVersion}",
             appcompatV7     : "com.android.support:appcompat-v7:${versions.supportLibraryVersion}",
             constraintLayout: "com.android.support.constraint:constraint-layout:${versions.constraintLayoutVersion}",
 

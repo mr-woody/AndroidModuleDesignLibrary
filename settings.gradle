@@ -1,4 +1,4 @@
-apply from: "${rootProject.projectDir}/buildScript/plugin_module/with-module-api-build.gradle"
+apply from: "${rootProject.projectDir}/buildScript/plugin/api/with-module-api-build.gradle"
 
 include ':app'
 include ':app2'

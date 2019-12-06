@@ -41,7 +41,7 @@ ext {
 
         //直接复制公共模块的AndroidManifest文件到新的路径，作为该模块的文件
         copy() {
-            from "${apiGradle}/template/AndroidManifest.xml"
+            from "${apiGradle}/plugin/api/template/AndroidManifest.xml"
             into "${targetDir}/src/main/"
         }
 
@@ -57,7 +57,7 @@ ext {
 
         //复制 gradle文件到新的路径，作为该模块的gradle
         copy() {
-            from "${apiGradle}/template/ApiBuildGralde.gradle"
+            from "${apiGradle}/plugin/api/template/ApiBuildGralde.gradle"
             into "${targetDir}/"
         }
 
