@@ -18,6 +18,9 @@ buildscript {
         classpath "com.okay.component.plugin:component-plugin:1.0.0-SNAPSHOT"
         classpath "com.okay.register.plugin:autoregister-plugin:1.0.0-SNAPSHOT"
 
+
+        classpath 'com.okay.supercross.plugin:supercross-plugin:1.0.3-SNAPSHOT'
+
         classpath 'com.okay.upload.plugin:upload-plugin:1.0.3'//本地maven
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -40,12 +43,16 @@ allprojects {
     }
 }
 
+/*
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+*/
 
 //按照源码的方式进行配置
 apply from: 'buildScript/plugin/module_cofig/appcofig-local-plugin-build.gradle'
 //动态注入代码，解决IApplicationLife动态注册的问题
 apply from: 'buildScript/plugin/autoregister/autoregister-plugin-build.gradle'
+//上传-api moudle到远程maven库
+apply from: 'buildScript/maven/upload-api-maven-config.gradle'
 

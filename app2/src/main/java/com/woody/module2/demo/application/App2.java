@@ -5,9 +5,10 @@ import android.util.Log;
 
 import com.okay.component.api.BaseApplication;
 import com.umeng.commonsdk.UMConfigure;
+import com.woody.commonbusiness.application.CommonApplication;
 
 
-public class App2 extends BaseApplication {
+public class App2 extends CommonApplication {
     final static String TAG = App2.class.getSimpleName();
 
     @Override

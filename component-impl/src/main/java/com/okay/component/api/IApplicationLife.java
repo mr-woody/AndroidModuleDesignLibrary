@@ -1,6 +1,7 @@
 package com.okay.component.api;
 
 import android.app.Application;
+import android.content.Context;
 import android.content.res.Configuration;
 
 /**
@@ -16,7 +17,7 @@ public interface IApplicationLife {
 
     void onCreate(Application application);
 
-    void attachBaseContext(Application application);
+    void attachBaseContext(Context context);
 
     void onTerminate(Application application);
 

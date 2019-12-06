@@ -1,11 +1,10 @@
 package com.okay.component.api;
 
-import android.app.Application;
 import android.content.Context;
 import android.content.res.Configuration;
-import android.support.multidex.MultiDex;
+import android.support.multidex.MultiDexApplication;
 
-public class BaseApplication extends Application {
+public class BaseApplication extends MultiDexApplication {
 
     @Override
     public void onCreate() {
@@ -14,10 +13,9 @@ public class BaseApplication extends Application {
     }
 
     @Override
-    protected void attachBaseContext(Context base) {
-        super.attachBaseContext(base);
-        MultiDex.install(base);
-        ApplicationDelegate.onApplicationAttachBaseContext(this);
+    protected void attachBaseContext(Context context) {
+        super.attachBaseContext(context);
+        ApplicationDelegate.onApplicationAttachBaseContext(context);
     }
 
     @Override

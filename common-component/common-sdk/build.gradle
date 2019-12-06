@@ -22,5 +22,8 @@ dependencies {
     api fileTree(dir: 'libs', include: ['*.jar'])
     api 'com.okay.router:router-api:1.0.0-20190724.025004-3'
 
+    // 跨进程通信库(解决模块化通信问题)
+    api "com.okay.supercross:supercross-api:1.0.4-SNAPSHOT"
+
 
 }

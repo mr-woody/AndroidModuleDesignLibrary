@@ -1,6 +1,7 @@
 package com.okay.component.api;
 
 import android.app.Application;
+import android.content.Context;
 import android.content.res.Configuration;
 
 import java.util.List;
@@ -14,10 +15,10 @@ public class ApplicationDelegate {
         }
     }
 
-    public static void onApplicationAttachBaseContext(Application baseContext) {
+    public static void onApplicationAttachBaseContext(Context Context) {
         List<IApplicationLife> applications = ApplicationManager.getApplicationDelegates();
         for (IApplicationLife applicationLife : applications) {
-            applicationLife.attachBaseContext(baseContext);
+            applicationLife.attachBaseContext(Context);
         }
     }
 
