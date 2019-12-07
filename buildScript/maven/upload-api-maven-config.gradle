@@ -3,6 +3,7 @@ apply plugin: 'maven'
 apply plugin: 'com.okay.upload.plugin'
 maven {
     repository{
+        name "okayclient_snapshot"
         url "http://10.60.0.100:8081/repository/okayclient_snapshot/"
         userName "yuetao"
         userPassword {
