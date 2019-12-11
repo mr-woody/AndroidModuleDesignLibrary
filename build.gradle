@@ -18,8 +18,10 @@ buildscript {
         classpath "com.okay.component.plugin:component-plugin:1.0.0-SNAPSHOT"
         classpath "com.okay.register.plugin:autoregister-plugin:1.0.0-SNAPSHOT"
 
-
         classpath 'com.okay.supercross.plugin:supercross-plugin:1.0.3-SNAPSHOT'
+
+        //api接口解决方案插件
+        classpath 'com.okay.api.plugin:componentApi-plugin:1.0.1-SNAPSHOT'
 
         classpath 'com.okay.upload.plugin:upload-plugin:1.0.3'//本地maven
         // NOTE: Do not place your application dependencies here; they belong
@@ -55,4 +57,6 @@ apply from: 'buildScript/plugin/module_cofig/appcofig-local-plugin-build.gradle'
 apply from: 'buildScript/plugin/autoregister/autoregister-plugin-build.gradle'
 //上传-api moudle到远程maven库
 apply from: 'buildScript/maven/upload-api-maven-config.gradle'
+// api接口解决方案插件
+apply from: 'buildScript/plugin/api/api-cofig-plugin-build.gradle'
 

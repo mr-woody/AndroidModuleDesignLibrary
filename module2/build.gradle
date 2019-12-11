@@ -40,6 +40,8 @@ dependencies {
 
     implementation project(":module1-api")
 
+    implementation apiPublication('com.woody.module1.api:api-sdk:1.0.0')
+
 
     kapt 'com.okay.router.compiler:router-compiler:1.0.0-20190724.031423-2'
     annotationProcessor 'com.okay.router.compiler:router-compiler:1.0.0-20190724.031423-2'

@@ -7,7 +7,7 @@ import com.woody.module1.callback.JavaActionCallback
 import com.woody.module2.config.ModuleConfig
 import com.woody.module2.model.BEvent
 import com.okay.supercross.SuperCross
-
+import com.woody.module1.callback.ApiActionCallback
 
 
 @Route(value =  [ModuleConfig.Module2.URL_MODULE_MAIN_ACTIVITY])
@@ -22,9 +22,18 @@ class Module2MainActivity : AppCompatActivity() {
         //获取远程服务
         val javaActionCallback:JavaActionCallback? = SuperCross.getRemoteService(JavaActionCallback::class.java)
 
+
+
         //服务未注册时，service为null
         if(null!=javaActionCallback){
             javaActionCallback.run()
+        }
+
+        //获取远程服务
+        val apiActionCallback:ApiActionCallback? = SuperCross.getRemoteService(ApiActionCallback::class.java)
+        //服务未注册时，service为null
+        if(null!=apiActionCallback){
+            apiActionCallback.run()
         }
 
 

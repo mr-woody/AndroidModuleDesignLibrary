@@ -11,6 +11,7 @@ maven {
             properties.load(project.rootProject.file('local.properties').newDataInputStream())
             properties.getProperty("maven.password")
         }
+
         module{
             name="module1-api"
             groupId "com.okay.module1.test"

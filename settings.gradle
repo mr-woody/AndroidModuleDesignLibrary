@@ -11,7 +11,8 @@ project(':common-sdk').projectDir = new File("common-component/common-sdk/")
 
 include ':component-impl'
 include ':component-plugin'
-include ':autoregister-plugin'
+include ':autoRegister-plugin'
+include ':componentApi-plugin'
 
 
 include ':common-business'

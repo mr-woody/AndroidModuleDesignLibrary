@@ -1,5 +1,6 @@
 package com.woody.module1.demo.application;
 import android.app.Application;
+import android.content.Context;
 import android.content.res.Configuration;
 import android.util.Log;
 
@@ -20,7 +21,7 @@ public class MainApplication implements IApplicationLife {
     }
 
     @Override
-    public void attachBaseContext(Application application) {
+    public void attachBaseContext(Context context) {
 
     }
 
