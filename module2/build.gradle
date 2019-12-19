@@ -38,8 +38,6 @@ dependencies {
     implementation project(":common-business")
     implementation project(":common-resource")
 
-    implementation project(":module1-api")
-
     implementation apiPublication('com.woody.module1.api:api-sdk:1.0.0')
 
 

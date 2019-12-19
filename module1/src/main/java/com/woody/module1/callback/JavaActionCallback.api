@@ -1,7 +1,0 @@
-package com.woody.module1.callback;
-
-public interface JavaActionCallback{
-    public void run();
-    public int action(String param);
-
-}

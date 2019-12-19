@@ -12,7 +12,7 @@ api {
                 // or
 //                implementation 'com.google.code.gson:gson:2.8.1'
 
-//                compileOnly misPublication('com.eastwood.demo:module-main-sdk')
+//                compileOnly apiPublication('com.woody.module1.api:api-sdk')
 
                 implementation rootProject.ext.dependencies.kotlinStdlibJdk7
             }
