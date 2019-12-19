@@ -129,9 +129,9 @@ api {
 
 4. 对应的截图
 
-![api 服务提供模块包结构示例图 ](http://git.okjiaoyu.cn/stu/androidmoduledesign/blob/develop_1.0.3/componentApi-plugin/image/E1DFB9F1-FA93-4CFC-91F4-67AB0FC3D558.png)
+![api 服务提供模块包结构示例图 ](http://git.okjiaoyu.cn/stu/androidmoduledesign/blob/develop_1.0.3/componentApi-plugin/image/E1DFB9F1-FA93-4CFC-91F4-67AB0FC3D558.png+)
 
-![api 服务提供模块，api对外暴露模块上传maven截图](http://git.okjiaoyu.cn/stu/androidmoduledesign/blob/develop_1.0.3/componentApi-plugin/image/4747BEFC-EBDA-43F6-AB36-3D4C01E084FD.png)
+![api 服务提供模块，api对外暴露模块上传maven截图](http://git.okjiaoyu.cn/stu/androidmoduledesign/blob/develop_1.0.3/componentApi-plugin/image/4747BEFC-EBDA-43F6-AB36-3D4C01E084FD.png+)
 
 
 ### 获取接口、实体类和工具类
