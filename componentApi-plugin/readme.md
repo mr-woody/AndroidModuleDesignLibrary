@@ -127,6 +127,12 @@ api {
 * 在`dependencies`中可声明该api Publication编译和运行时需用到的第三方库，仅支持`compileOnly`和`implementation`。如果api文件夹下的类使用了kotlin语法，需要添加kotlin相关的依赖，比如'org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version'。
 
 
+4. 对应的截图
+
+![api 服务提供模块包结构示例图 ](http://git.okjiaoyu.cn/stu/androidmoduledesign/raw/master/image/author.png)
+
+![api 服务提供模块，api对外暴露模块上传maven截图](http://git.okjiaoyu.cn/stu/androidmoduledesign/raw/master/image/author.png)
+
 
 ### 获取接口、实体类和工具类
 
