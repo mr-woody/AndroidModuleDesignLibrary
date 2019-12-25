@@ -31,6 +31,7 @@ dependencies {
 
     api 'com.umeng.umsdk:common:1.5.4'
     api 'com.umeng.umsdk:analytics:7.5.4'
+    api 'com.google.code.gson:gson:2.8.5'
 
 
 }
