@@ -40,5 +40,27 @@ class Module1MainActivity : AppCompatActivity() {
         println("javaBeanEntry6=" + GsonUtils.toJson(javaBeanEntry6))
 
 
+        val json7 = createJsonString(1203,"服务器错误！")
+        println("javaBeanEntry7=" + json7)
+
+
+    }
+
+
+    /**
+     * 对于一些没有response的请求来说，创建一个错误数据模型
+     *
+     * @param code 错误码
+     * @param msg  错误信息
+     * @return
+     */
+    private fun createJsonString(ecode: Int, emsg: String?): String {
+        var meta = HashMap<String,Any?>()
+        meta["ecode"] = ecode
+        meta["emsg"] = emsg
+
+        var json = HashMap<String,HashMap<String,Any?>>()
+        json["meta"] = meta
+        return GsonUtils.toJson(json)
     }
 }

@@ -2,6 +2,7 @@ package com.woody.commonbusiness.json;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
@@ -48,6 +49,24 @@ public class GsonUtils {
                     .create();
         }
         return gson;
+    }
+
+    /**
+     * 根据jsonstr，获取JsonObject对象
+     * @param jsonStr
+     * @return
+     */
+    public static JsonObject getJsonObject(String jsonStr){
+        return fromJson(jsonStr,JsonObject.class);
+    }
+
+    /**
+     * 根据jsonstr，获取getJsonArray对象
+     * @param jsonStr
+     * @return
+     */
+    public static JsonArray getJsonArray(String jsonStr){
+        return fromJson(jsonStr,JsonArray.class);
     }
 
     /**
