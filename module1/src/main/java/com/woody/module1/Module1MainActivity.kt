@@ -2,6 +2,7 @@ package com.woody.module1
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.google.gson.Gson
 import com.google.gson.JsonObject
 import com.okay.router.annotation.Route
 import com.woody.commonbusiness.json.GsonUtils
@@ -61,6 +62,10 @@ class Module1MainActivity : AppCompatActivity() {
         val jsonObject10 = GsonUtils.fromJson(json10, JsonObject::class.java)
         val url10 = GsonUtils.getString("url", jsonObject10)
         println("javaBeanEntry10=" + url10)
+
+
+        val json:String? = null
+        Gson().fromJson(json,JavaBeanEntry::class.java)
 
 
     }

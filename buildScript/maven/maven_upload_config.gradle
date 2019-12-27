@@ -86,7 +86,7 @@ afterEvaluate {
                         repository(url: gradleProperties.getProperty("maven.local_maven_url").toString())
                     }else {
                         repository(url: gradleProperties.getProperty("maven.remote_maven_url").toString()) {
-                            authentication(userName: gradleProperties.getProperty("maven.user"), password: localProperties.getProperty("maven.password"))
+                            authentication(userName: localProperties.getProperty("maven.user"), password: localProperties.getProperty("maven.password"))
                         }
                     }
                     pom("${variant.name}").project {
