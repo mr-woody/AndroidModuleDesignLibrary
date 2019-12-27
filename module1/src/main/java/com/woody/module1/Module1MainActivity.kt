@@ -2,6 +2,7 @@ package com.woody.module1
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.google.gson.JsonObject
 import com.okay.router.annotation.Route
 import com.woody.commonbusiness.json.GsonUtils
 import com.woody.module1.config.ModuleConfig
@@ -42,6 +43,24 @@ class Module1MainActivity : AppCompatActivity() {
 
         val json7 = createJsonString(1203,"服务器错误！")
         println("javaBeanEntry7=" + json7)
+
+
+        val json8 = "{\"url\":\"https://github.com/xyxyLiu/AndResM\",\"duration\":\"测试\"}"
+        val jsonObject8 = GsonUtils.fromJson(json8, JsonObject::class.java)
+        val url8 = GsonUtils.getString("url", jsonObject8)
+        println("javaBeanEntry8=" + url8)
+
+
+        val json9 = "{\"url\":{\"name\":\"测试2\"},\"duration\":\"测试\"}"
+        val jsonObject9 = GsonUtils.fromJson(json9, JsonObject::class.java)
+        val url9 = GsonUtils.getString("url", jsonObject9)
+        println("javaBeanEntry9=" + url9)
+
+
+        val json10 = "{\"url\":[\"name1\",\"name2\",\"name3\"],\"duration\":\"测试\"}"
+        val jsonObject10 = GsonUtils.fromJson(json10, JsonObject::class.java)
+        val url10 = GsonUtils.getString("url", jsonObject10)
+        println("javaBeanEntry10=" + url10)
 
 
     }

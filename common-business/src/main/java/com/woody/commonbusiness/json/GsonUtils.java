@@ -73,18 +73,30 @@ public class GsonUtils {
      * 根据key,获取JsonObject里面的字符串值
      * @param key
      * @param jsonObject
-     * @return
+     * @return 返回String类型数值,默认值或者当数据为null 返回null
      */
     public static String getString(String key, JsonObject jsonObject){
-        if (key == null || jsonObject == null) return null;
+        return getString(key,jsonObject,null);
+    }
+
+
+    /**
+     * 根据key,获取JsonObject里面的字符串值
+     * @param key
+     * @param jsonObject
+     * @param defaultValue
+     * @return 返回String类型数值,默认值或者当数据为null 返回@param defaultValue
+     */
+    public static String getString(String key, JsonObject jsonObject,String defaultValue){
+        if (key == null || jsonObject == null) return defaultValue;
         String source = null;
         if (jsonObject.has(key)) {
             JsonElement element = jsonObject.get(key);
-            if (element != null) {
-                source = getGson().toJson(element);
+            if (element != null && !element.isJsonNull()) {
+                source = getGson().fromJson(element,String.class);
             }
         }
-        return source;
+        return source!=null?source:defaultValue;
     }
 
 
