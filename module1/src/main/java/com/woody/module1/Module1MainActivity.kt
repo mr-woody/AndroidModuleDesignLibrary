@@ -68,6 +68,8 @@ class Module1MainActivity : AppCompatActivity() {
         Gson().fromJson(json,JavaBeanEntry::class.java)
 
 
+        val json11 = "{\"list\":[{\"sid\":19,\"name\":\"语文\",\"surl\":\"http://hd.okjiaoyu.cn/hd_PPlwL7ycV2.png\",\"wrong\":312},{\"sid\":20,\"name\":\"数学\",\"surl\":\"http://hd.okjiaoyu.cn/hd_PPlxKgGKaI.png\",\"wrong\":167},{\"sid\":21,\"name\":\"英语\",\"surl\":\"http://hd.okjiaoyu.cn/hd_PPlyZTYOOI.png\",\"wrong\":117},{\"sid\":29,\"name\":\"科学\",\"surl\":\"http://hd.okjiaoyu.cn/hd_QceethAdwY.png\",\"wrong\":14}]}"
+        GsonUtils.fromJsonToList(GsonUtils.getString("list",GsonUtils.fromJson(json11,JsonObject::class.java)),JavaBeanEntry::class.java)
     }
 
 

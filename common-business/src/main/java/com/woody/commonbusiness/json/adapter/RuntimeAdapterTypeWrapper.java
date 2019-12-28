@@ -2,9 +2,11 @@ package com.woody.commonbusiness.json.adapter;
 
 import com.google.gson.Gson;
 import com.google.gson.TypeAdapter;
+import com.google.gson.internal.$Gson$Types;
 import com.google.gson.internal.bind.ReflectiveTypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonToken;
 import com.google.gson.stream.JsonWriter;
 
 import java.io.IOException;
@@ -12,18 +14,23 @@ import java.lang.reflect.Type;
 import java.lang.reflect.TypeVariable;
 
 public class RuntimeAdapterTypeWrapper<T> extends TypeAdapter<T> {
-    private final Gson context;
+    private final Gson gson;
     private final TypeAdapter<T> delegate;
     private final Type type;
 
-    public RuntimeAdapterTypeWrapper(Gson context, TypeAdapter<T> delegate, Type type) {
-        this.context = context;
+    public RuntimeAdapterTypeWrapper(Gson gson, TypeAdapter<T> delegate, Type type) {
+        this.gson = gson;
         this.delegate = delegate;
         this.type = type;
     }
 
     @Override
     public T read(JsonReader in) throws IOException {
+        JsonToken token = in.peek();
+        switch (token) {
+            case STRING:
+                return gson.fromJson(in.nextString(),type);
+        }
         return delegate.read(in);
     }
 
@@ -39,7 +46,7 @@ public class RuntimeAdapterTypeWrapper<T> extends TypeAdapter<T> {
         TypeAdapter chosen = delegate;
         Type runtimeType = getRuntimeTypeIfMoreSpecific(type, value);
         if (runtimeType != type) {
-            TypeAdapter runtimeTypeAdapter = context.getAdapter(TypeToken.get(runtimeType));
+            TypeAdapter runtimeTypeAdapter = gson.getAdapter(TypeToken.get(runtimeType));
             if (!(runtimeTypeAdapter instanceof ReflectiveTypeAdapterFactory.Adapter)) {
                 // The user registered a type adapter for the runtime type, so we will use that
                 chosen = runtimeTypeAdapter;
