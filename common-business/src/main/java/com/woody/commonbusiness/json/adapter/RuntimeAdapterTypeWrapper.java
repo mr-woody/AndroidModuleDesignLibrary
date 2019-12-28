@@ -2,7 +2,6 @@ package com.woody.commonbusiness.json.adapter;
 
 import com.google.gson.Gson;
 import com.google.gson.TypeAdapter;
-import com.google.gson.internal.$Gson$Types;
 import com.google.gson.internal.bind.ReflectiveTypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
