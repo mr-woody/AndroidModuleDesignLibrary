@@ -15,7 +15,7 @@ public interface IApplicationLife {
 
     int getPriority();
 
-    boolean isActive(Context context);
+    Boolean isActive(Context context);
 
     void onCreate(Application application);
 

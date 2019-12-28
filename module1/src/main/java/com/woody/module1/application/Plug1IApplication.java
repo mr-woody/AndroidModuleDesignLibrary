@@ -24,7 +24,7 @@ public class Plug1IApplication implements IApplicationLife {
     }
 
     @Override
-    public boolean isActive(Context context) {
+    public Boolean isActive(Context context) {
         return true;
     }
 
