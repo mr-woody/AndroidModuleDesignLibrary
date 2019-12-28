@@ -15,6 +15,8 @@ public interface IApplicationLife {
 
     int getPriority();
 
+    boolean isActive(Context context);
+
     void onCreate(Application application);
 
     void attachBaseContext(Context context);

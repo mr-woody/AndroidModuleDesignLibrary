@@ -12,15 +12,17 @@ public class ApplicationManager {
 
     /**
      * 通过插件加载 IApplicationLife 类
+     *
+     * @param appLifeCycle
      */
-    private static void register(IApplicationLife obj) {
-        if (obj!=null) {
-            applicationDelegates.add(obj);
+    private static void register(IApplicationLife appLifeCycle) {
+        if (appLifeCycle != null) {
+            applicationDelegates.add(appLifeCycle);
         }
     }
 
-    public static List<IApplicationLife>  getApplicationDelegates() {
-        if(!isSort && applicationDelegates!=null){
+    public static List<IApplicationLife> getApplicationDelegates() {
+        if (!isSort && applicationDelegates != null) {
             isSort = true;
             Collections.sort(applicationDelegates, new AppLifeCycleComparator());
         }

@@ -16,6 +16,11 @@ public class MainApplication implements IApplicationLife {
     }
 
     @Override
+    public boolean isActive(Context context) {
+        return true;
+    }
+
+    @Override
     public void onCreate(Application application) {
         Log.e(TAG,"onCreate ...");
     }

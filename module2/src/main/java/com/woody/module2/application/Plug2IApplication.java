@@ -21,6 +21,11 @@ public class Plug2IApplication implements IApplicationLife {
     }
 
     @Override
+    public boolean isActive(Context context) {
+        return true;
+    }
+
+    @Override
     public void onCreate(Application application) {
         Log.e(TAG,"onCreate ...");
         RouterConfiguration.get().addRouteCreator(new RouterRuleCreator());

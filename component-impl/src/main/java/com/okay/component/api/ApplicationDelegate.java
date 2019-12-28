@@ -11,14 +11,14 @@ public class ApplicationDelegate {
     public static void onApplicationCreate(Application baseContext) {
         List<IApplicationLife> applications = ApplicationManager.getApplicationDelegates();
         for (IApplicationLife applicationLife : applications) {
-            applicationLife.onCreate(baseContext);
+            if(applicationLife.isActive(baseContext)) applicationLife.onCreate(baseContext);
         }
     }
 
-    public static void onApplicationAttachBaseContext(Context Context) {
+    public static void onApplicationAttachBaseContext(Context context) {
         List<IApplicationLife> applications = ApplicationManager.getApplicationDelegates();
         for (IApplicationLife applicationLife : applications) {
-            applicationLife.attachBaseContext(Context);
+            if(applicationLife.isActive(context)) applicationLife.attachBaseContext(context);
         }
     }
 
@@ -26,28 +26,28 @@ public class ApplicationDelegate {
     public static void onApplicationTerminate(Application baseContext) {
         List<IApplicationLife> applications = ApplicationManager.getApplicationDelegates();
         for (IApplicationLife applicationLife : applications) {
-            applicationLife.onTerminate(baseContext);
+            if(applicationLife.isActive(baseContext)) applicationLife.onTerminate(baseContext);
         }
     }
 
-    public static void onApplicationConfigurationChanged(Application baseContext,Configuration newConfig) {
+    public static void onApplicationConfigurationChanged(Application baseContext, Configuration newConfig) {
         List<IApplicationLife> applications = ApplicationManager.getApplicationDelegates();
         for (IApplicationLife applicationLife : applications) {
-            applicationLife.onConfigurationChanged(baseContext, newConfig);
+            if(applicationLife.isActive(baseContext)) applicationLife.onConfigurationChanged(baseContext, newConfig);
         }
     }
 
     public static void onApplicationLowMemory(Application baseContext) {
         List<IApplicationLife> applications = ApplicationManager.getApplicationDelegates();
         for (IApplicationLife applicationLife : applications) {
-            applicationLife.onLowMemory(baseContext);
+            if(applicationLife.isActive(baseContext)) applicationLife.onLowMemory(baseContext);
         }
     }
 
-    public static void onApplicationTrimMemory(Application baseContext,int level) {
+    public static void onApplicationTrimMemory(Application baseContext, int level) {
         List<IApplicationLife> applications = ApplicationManager.getApplicationDelegates();
         for (IApplicationLife applicationLife : applications) {
-            applicationLife.onTrimMemory(baseContext, level);
+            if(applicationLife.isActive(baseContext)) applicationLife.onTrimMemory(baseContext, level);
         }
     }
 }

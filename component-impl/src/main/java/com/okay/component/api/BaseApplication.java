@@ -27,7 +27,7 @@ public class BaseApplication extends MultiDexApplication {
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        ApplicationDelegate.onApplicationConfigurationChanged(this,newConfig);
+        ApplicationDelegate.onApplicationConfigurationChanged(this, newConfig);
     }
 
     @Override
@@ -39,6 +39,6 @@ public class BaseApplication extends MultiDexApplication {
     @Override
     public void onTrimMemory(int level) {
         super.onTrimMemory(level);
-        ApplicationDelegate.onApplicationTrimMemory(this,level);
+        ApplicationDelegate.onApplicationTrimMemory(this, level);
     }
 }
