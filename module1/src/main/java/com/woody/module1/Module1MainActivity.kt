@@ -8,6 +8,8 @@ import com.okay.router.annotation.Route
 import com.woody.commonbusiness.json.GsonUtils
 import com.woody.module1.config.ModuleConfig
 import com.woody.module1.model.JavaBeanEntry
+import com.woody.module1.model.ReportJsonData
+import com.woody.module1.model.WrongJsonData
 
 @Route(value =  [ModuleConfig.Module1.URL_MODULE_MAIN_ACTIVITY])
 class Module1MainActivity : AppCompatActivity() {
@@ -70,6 +72,23 @@ class Module1MainActivity : AppCompatActivity() {
 
         val json11 = "{\"list\":[{\"sid\":19,\"name\":\"语文\",\"surl\":\"http://hd.okjiaoyu.cn/hd_PPlwL7ycV2.png\",\"wrong\":312},{\"sid\":20,\"name\":\"数学\",\"surl\":\"http://hd.okjiaoyu.cn/hd_PPlxKgGKaI.png\",\"wrong\":167},{\"sid\":21,\"name\":\"英语\",\"surl\":\"http://hd.okjiaoyu.cn/hd_PPlyZTYOOI.png\",\"wrong\":117},{\"sid\":29,\"name\":\"科学\",\"surl\":\"http://hd.okjiaoyu.cn/hd_QceethAdwY.png\",\"wrong\":14}]}"
         GsonUtils.fromJsonToList(GsonUtils.getString("list",GsonUtils.fromJson(json11,JsonObject::class.java)),JavaBeanEntry::class.java)
+
+
+        val temp = Gson().fromJson("{\"list\":[{\"showhelp\":false,\"kname\":\"第4节 细胞中的糖类和脂质\",\"degree\":\"0\",\"predegree\":\"0\",\"degreef\":\"0.0\",\"predegreef\":\"0.0\",\"degreepercent\":0,\"predegreepercent\":0,\"list\":[{\"type\":1,\"typename\":\"做练习\",\"recommend\":true,\"lock\":false,\"exercisenum\":null,\"teacherid\":null,\"aliaslist\":null},{\"type\":4,\"typename\":\"做错题\",\"recommend\":false,\"lock\":false,\"exercisenum\":null,\"teacherid\":null,\"aliaslist\":null},{\"type\":3,\"typename\":\"看微课\",\"recommend\":false,\"lock\":false,\"exercisenum\":null,\"teacherid\":null,\"aliaslist\":null},{\"type\":2,\"typename\":\"同步资源\",\"recommend\":true,\"lock\":false,\"exercisenum\":null,\"teacherid\":null,\"aliaslist\":null},{\"type\":5,\"typename\":\"扩展资源\",\"recommend\":false,\"lock\":false,\"exercisenum\":null,\"teacherid\":null,\"aliaslist\":null}],\"kid\":\"11028\",\"ktype\":2,\"klevel\":2,\"kstate\":1,\"isOnDesk\":false,\"magicLearnTag\":0,\"mkid\":\"\",\"mkname\":\"\",\"mlearnstate\":null,\"rlist\":[]}]}", JsonObject::class.java)
+        val list = GsonUtils.fromJsonToList(GsonUtils.getString("list",temp), ReportJsonData::class.java)
+        if (list == null || list.isEmpty()) {}
+
+
+
+        val json13 = "{\"uid\":\"461356\",\"uname\":\"82951428965\",\"name\":\"十二月十九十二\",\"avatarurl\":\"http://hd.okjiaoyu.cn/hd_1emRULWpyNy.jpg\",\"gender\":2,\"grade\":\"三年级\",\"graduation\":0,\"location\":\"宁夏回族自治区 银川市 兴庆区\",\"orglist\":[{\"sid\":\"54\",\"type\":0,\"name\":\"学校\",\"clist\":[]}],\"fontsize\":28,\"status\":2}"
+        val jsonObject13 = GsonUtils.fromJsonToMap(json13,String::class.java)
+        println("javaBeanEntry11=" + jsonObject13)
+
+        val temp1 = Gson().fromJson("{\"list\":[{\"sid\":1,\"name\":\"语文\",\"surl\":\"http://hd.okjiaoyu.cn/hd_PPlwL7ycV2.png\",\"wrong\":5},{\"sid\":3,\"name\":\"数学\",\"surl\":\"http://hd.okjiaoyu.cn/hd_PPlxKgGKaI.png\",\"wrong\":11},{\"sid\":15,\"name\":\"地理\",\"surl\":\"http://hd.okjiaoyu.cn/hd_PPlt6rqQKI.png\",\"wrong\":6}]}", JsonObject::class.java)
+        val dataList: List<WrongJsonData>? = GsonUtils.fromJsonToList(GsonUtils.getString("list",temp1), WrongJsonData::class.java)
+        if (dataList != null && dataList?.size != 0) {
+            println("javaBeanEntry12=" + dataList)
+        }
     }
 
 

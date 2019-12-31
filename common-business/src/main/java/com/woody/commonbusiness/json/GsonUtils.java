@@ -93,7 +93,7 @@ public class GsonUtils {
         if (jsonObject.has(key)) {
             JsonElement element = jsonObject.get(key);
             if (element != null && !element.isJsonNull()) {
-                source = getGson().fromJson(element,String.class);
+                source = getGson().toJson(element);
             }
         }
         return source!=null?source:defaultValue;
@@ -178,15 +178,14 @@ public class GsonUtils {
     }
 
 
+
     /**
-     * 将给定的 {@code JSON} 字符串转换成Map<String,Object>的类型对象。
-     *
-     * @param json
-     *            给定的 {@code JSON} 字符串。
-     * @return Map<String,Object> 给定的 {@code JSON} 字符串表示的指定的类型对象。
+     * @param json map的序列化结果
+     * @param <T>  v类型
+     * @return Map<K                                                                                                                               ,                                                                                                                               V>
      */
-    public static <T> Map<String, T> fromJsonToMap(String json) {
-        return fromJson(json, new TypeToken<Map<String, T>>() {});
+    public static <T> Map<String, T> fromJsonToMap(String json, Class<T> vClazz) {
+        return getGson().fromJson(json, TypeToken.getParameterized(Map.class, String.class, vClazz).getType());
     }
 
 
@@ -206,6 +205,7 @@ public class GsonUtils {
         }
         return ts;
     }
+
 
     private static class ListOfJson<T> implements ParameterizedType {
         private Class<?> wrapped;
@@ -229,6 +229,8 @@ public class GsonUtils {
             return null;
         }
     }
+
+
 
 
 }
