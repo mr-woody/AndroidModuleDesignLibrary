@@ -28,7 +28,7 @@ public class RuntimeAdapterTypeWrapper<T> extends TypeAdapter<T> {
         JsonToken token = in.peek();
         switch (token) {
             case STRING:
-                return gson.fromJson(gson.toJson(in.nextString()),type);
+                return gson.fromJson(in.nextString(),type);
         }
         return delegate.read(in);
     }

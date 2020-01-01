@@ -54,6 +54,7 @@ class Module1MainActivity : AppCompatActivity() {
         println("javaBeanEntry8=" + url8)
 
 
+
         val json9 = "{\"url\":{\"name\":\"测试2\"},\"duration\":\"测试\"}"
         val jsonObject9 = GsonUtils.fromJson(json9, JsonObject::class.java)
         val url9 = GsonUtils.getString("url", jsonObject9)

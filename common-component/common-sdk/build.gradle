@@ -20,10 +20,10 @@ android {
 
 dependencies {
     api fileTree(dir: 'libs', include: ['*.jar'])
-    api 'com.okay.router:router-api:1.0.0-20190724.025004-3'
+    api 'com.okay.router:router-api:1.0.0-SNAPSHOT'
 
     // 跨进程通信库(解决模块化通信问题)
-    api "com.okay.supercross:supercross-api:1.0.4-SNAPSHOT"
+    api "com.okay.supercross:supercross-api:1.0.7-SNAPSHOT"
 
 
 }
