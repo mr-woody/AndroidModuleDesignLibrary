@@ -10,6 +10,7 @@ import com.woody.module1.config.ModuleConfig
 import com.woody.module1.model.JavaBeanEntry
 import com.woody.module1.model.ReportJsonData
 import com.woody.module1.model.WrongJsonData
+import com.woody.module1.model.classrom.InclassRoomDto
 
 @Route(value =  [ModuleConfig.Module1.URL_MODULE_MAIN_ACTIVITY])
 class Module1MainActivity : AppCompatActivity() {
@@ -90,6 +91,11 @@ class Module1MainActivity : AppCompatActivity() {
         if (dataList != null && dataList?.size != 0) {
             println("javaBeanEntry12=" + dataList)
         }
+
+
+        val json14 = "{\"success\":true,\"errorCode\":0,\"code\":0,\"msg\":\"获取房间列表成功\",\"content\":[{\"roomId\":2531623,\"createTime\":1578470935743,\"data\":{\"subjectname\":\"英语\",\"islive\":false,\"liveendtime\":0,\"coursename\":\"2020 0108 大课\",\"livestarttime\":0,\"roomid\":\"2531623\",\"subjectid\":6,\"iconurls\":[\"https:\\/\\/hd.okjiaoyu.cn\\/hd_JlBZwLEn4Y.png    \"],\"classid\":13058,\"teacherid\":61951190098,\"classname\":\"高三-模拟上课班\",\"scolor\":\"#FFFF7043\",\"teachername\":\"测试一英语\",\"publishtime\":1578470935397,\"courseid\":\"2531623\"}}]}"
+        val javaBeanEntry14 = GsonUtils.fromJson(json14, InclassRoomDto::class.java)
+        println("javaBeanEntry14=" + GsonUtils.toJson(javaBeanEntry14))
     }
 
 
