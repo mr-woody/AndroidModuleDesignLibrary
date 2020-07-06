@@ -23,7 +23,7 @@ repositories{
 ext {
     //componentApi-plugin
     pom_project = [
-            version : '1.0.1-SNAPSHOT',
+            version : '1.0.2-SNAPSHOT',
             group_id : "com.okay.api.plugin",
             artifact_id : "componentApi-plugin",
             description : "Android componentApi-plugin library"

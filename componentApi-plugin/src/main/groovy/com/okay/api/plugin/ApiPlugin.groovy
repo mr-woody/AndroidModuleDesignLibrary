@@ -378,7 +378,7 @@ class ApiPlugin implements Plugin<Project> {
     }
 
     void createPublishTask(Publication publication) {
-        def taskName = 'compileApi[' + publication.artifactId + ']Source'
+        def taskName = 'compileApi' + publication.artifactId.capitalize() + 'Source'
         def compileTask = project.getTasks().findByName(taskName)
         if (compileTask == null) {
             compileTask = project.getTasks().create(taskName, CompileApiTask.class)
@@ -386,7 +386,7 @@ class ApiPlugin implements Plugin<Project> {
             compileTask.dependsOn 'clean'
         }
 
-        def publicationName = 'Api[' + publication.artifactId + ']'
+        def publicationName = 'Api' + publication.artifactId.capitalize()
         String publishTaskNamePrefix = "publish${publicationName}PublicationTo"
         project.tasks.whenTaskAdded {
             if (it.name.startsWith(publishTaskNamePrefix)) {
