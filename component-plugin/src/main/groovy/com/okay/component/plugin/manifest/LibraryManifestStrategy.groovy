@@ -12,7 +12,7 @@ class LibraryManifestStrategy extends ManifestStrategy{
 
     @Override
     void setApplication(def application, ModulesExtension modulesExt) {
-        if(!modulesExt.isRunAlone || modulesExt.applicationName == null || modulesExt.applicationName.isEmpty()) {
+        if(!modulesExt.isRunAlone || modulesExt.application.applicationName == null || modulesExt.application.applicationName.isEmpty()) {
             application.each{
                 it.attributes().remove("android:name")
             }

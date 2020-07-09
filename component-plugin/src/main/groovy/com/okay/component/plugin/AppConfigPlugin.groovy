@@ -2,11 +2,10 @@ package com.okay.component.plugin
 
 import com.okay.component.plugin.config.Constants
 import com.okay.component.plugin.config.DependentType
-import com.okay.component.plugin.extensions.AppConfig
+import com.okay.component.plugin.extensions.ConfigExtension
 import com.okay.component.plugin.extensions.AppExtension
 import com.okay.component.plugin.extensions.LibraryExtension
 import com.okay.component.plugin.utils.DependentsUtil
-import org.gradle.api.NamedDomainObjectContainer
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 /**
@@ -17,7 +16,7 @@ class AppConfigPlugin implements Plugin<Project> {
     @Override
     void apply(Project project) {
         if (project == project.rootProject) {
-            project.extensions.add(Constants.EXTENSION_NAME, new AppConfig(project))
+            project.extensions.add(Constants.EXTENSION_NAME, new ConfigExtension(project))
             configApp(project)
         }else {
             throw new RuntimeException(" Plug(${Constants.APP_CONFIG_PLUGIN_NAME}) can only be used in build.gradle files in the rootProject directory")
@@ -26,11 +25,9 @@ class AppConfigPlugin implements Plugin<Project> {
 
     void configApp(Project project) {
         List<String> moduleList = new ArrayList<>()
-        NamedDomainObjectContainer<AppExtension> appList
-        AppConfig appConfig
+        ConfigExtension appConfig
         project.afterEvaluate {
-            appConfig = project.extensions.getByName(Constants.EXTENSION_NAME) as AppConfig
-            appList = appConfig.apps
+            appConfig = project.extensions.getByName(Constants.EXTENSION_NAME) as ConfigExtension
             checkRepeat(appConfig)
             checkModules(appConfig,moduleList)
 
@@ -53,7 +50,7 @@ class AppConfigPlugin implements Plugin<Project> {
 
     }
 
-    static void checkRepeat(AppConfig appConfig){
+    static void checkRepeat(ConfigExtension appConfig){
         Map<String,List<AppExtension>> appGroupMap =
                 appConfig.apps.groupBy{ it.name.startsWith(':') ? it.name : new String(":" + it.name)}
 
@@ -76,7 +73,7 @@ class AppConfigPlugin implements Plugin<Project> {
 
     }
 
-    static void checkModules(AppConfig appConfig,
+    static void checkModules(ConfigExtension appConfig,
                              List<String> projectModules){
         Set<String> configSet = new HashSet<>()
         Set<String> modulesSet = new HashSet<>()

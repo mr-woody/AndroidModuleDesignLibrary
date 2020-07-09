@@ -14,13 +14,13 @@ buildscript {
     dependencies {
         classpath "com.android.tools.build:gradle:${versions.gradleVersion}"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlinVersion}"
-        classpath "com.okay.component.plugin:component-plugin:1.0.0-SNAPSHOT"
+        classpath "com.okay.component.plugin:component-plugin:1.0.31-SNAPSHOT"
         classpath "com.okay.register.plugin:autoregister-plugin:1.0.0-SNAPSHOT"
 
         classpath 'com.okay.supercross.plugin:supercross-plugin:1.0.3-SNAPSHOT'
 
         //api接口解决方案插件
-        classpath 'com.okay.api.plugin:componentApi-plugin:1.0.1-SNAPSHOT'
+        classpath 'com.okay.api.plugin:componentApi-plugin:1.0.2-SNAPSHOT'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }

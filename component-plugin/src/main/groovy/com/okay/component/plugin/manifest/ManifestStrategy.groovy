@@ -36,14 +36,14 @@ abstract class ManifestStrategy {
 
     void resetManifest(ModulesExtension moduleExt, BasePlugin appPlugin, boolean isDebug){
         setApplication(manifest.application, moduleExt)
-        if(manifest.@package != moduleExt.applicationId && moduleExt.applicationId != null && !moduleExt.applicationId.isEmpty()){
-            manifest.@package = moduleExt.applicationId
-        }
+
+        // 替换theme主题样式
+        replaceModulesThemeByAll(manifest.application, moduleExt)
 
         boolean isFindMain = false
-        if (moduleExt.mainActivity != null && !moduleExt.mainActivity.isEmpty()){
+        if (moduleExt.application.mainActivity != null && !moduleExt.application.mainActivity.isEmpty()){
             manifest.application.activity.each { activity ->
-                if (activity.@'android:name' == moduleExt.mainActivity){
+                if (activity.@'android:name' == moduleExt.application.mainActivity){
                     def filter = activity.'intent-filter'.find{
                         it.action.@'android:name' == "android.intent.action.MAIN"
                     }
@@ -54,13 +54,13 @@ abstract class ManifestStrategy {
         }
 
         manifest.application.activity.each { activity ->
-                def filter = activity.'intent-filter'.find{
-            it.action.@'android:name' == "android.intent.action.MAIN"
-        }
+            def filter = activity.'intent-filter'.find{
+                it.action.@'android:name' == "android.intent.action.MAIN"
+            }
             if (filter != null
-                    && moduleExt.mainActivity != null
-                    && !moduleExt.mainActivity.isEmpty()
-                    && activity.@'android:name' != moduleExt.mainActivity){
+                    && moduleExt.application.mainActivity != null
+                    && !moduleExt.application.mainActivity.isEmpty()
+                    && activity.@'android:name' != moduleExt.application.mainActivity){
                 filter.replaceNode{}
             }
         }
@@ -73,9 +73,9 @@ abstract class ManifestStrategy {
     }
 
     void addMainActivity(def application, ModulesExtension modulesExt){
-        if (modulesExt.mainActivity != null && !modulesExt.mainActivity.isEmpty()){
+        if (modulesExt.application.mainActivity != null && !modulesExt.application.mainActivity.isEmpty()){
             application.appendNode{
-                activity('android:name': modulesExt.mainActivity){
+                activity('android:name': modulesExt.application.mainActivity){
                     'intent-filter'{
                         action('android:name':"android.intent.action.MAIN")
                         category('android:name':"android.intent.category.LAUNCHER")
@@ -84,6 +84,21 @@ abstract class ManifestStrategy {
             }
         }
 
+    }
+
+    void replaceModulesThemeByAll(def application, ModulesExtension modulesExt){
+        if (modulesExt.theme != null && !modulesExt.theme.isEmpty()){
+            if(application.@'android:theme' == null ||
+                    application.@'android:theme' != modulesExt.theme){
+                application.@'android:theme' =  modulesExt.theme
+            }
+            application.activity.each { activity ->
+                if (activity.@'android:theme' == null || activity.@'android:theme'.isEmpty()){
+                    activity.@'android:theme' =  modulesExt.theme
+                }
+            }
+
+        }
     }
 
     void buildModulesManifest(def manifestFile, ModulesExtension moduleExt, BasePlugin appPlugin, boolean isDebug) {

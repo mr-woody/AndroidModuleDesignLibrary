@@ -12,15 +12,15 @@ class AppManifestStrategy extends ManifestStrategy{
 
     @Override
     void setApplication(def application, ModulesExtension modulesExt) {
-        if(modulesExt.applicationName == null || modulesExt.applicationName.isEmpty()) {
+        if(modulesExt.application.applicationName == null || modulesExt.application.applicationName.isEmpty()) {
             application.each{
                 it.attributes().remove("android:name")
             }
             return
         }
         if(application.@'android:name' == null ||
-                application.@'android:name' != modulesExt.applicationName){
-            application.@'android:name' =  modulesExt.applicationName
+                application.@'android:name' != modulesExt.application.applicationName){
+            application.@'android:name' =  modulesExt.application.applicationName
         }
     }
 

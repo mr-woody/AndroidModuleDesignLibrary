@@ -22,7 +22,7 @@ repositories{
 ext {
     //component-plugin
     pom_project = [
-            version : '1.0.0-SNAPSHOT',
+            version : '1.0.31-SNAPSHOT',
             group_id : "com.okay.component.plugin",
             artifact_id : "component-plugin",
             description : "Android component-plugin library"

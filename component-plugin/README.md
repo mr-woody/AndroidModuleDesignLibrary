@@ -12,6 +12,7 @@
  2. 可以配置实现多个不同壳app，随意组合不同多个依赖库（支持本地依赖库和远程依赖库）
  3. 可配置业务模块module是否能单独运行，注意目前只支持本地源码module配置
  4. 可以配置applicationId、applicationName和mainActivity
+ 5. 可以修改当前project下AndroidManifest.xml中的application和activity中的android:theme属性，其中假如activity节点已经设置过android:theme属性值，那么忽略，只有为空才会设置。
 
 
 
@@ -27,7 +28,7 @@ buildscript {
 
     }
     dependencies {
-        classpath "com.okay.component.plugin:component-plugin:1.0.0-SNAPSHOT"
+        classpath "com.okay.component.plugin:component-plugin:1.0.31-SNAPSHOT"
     }
 }
 ```
@@ -54,20 +55,24 @@ appConfig {
 
     apps {
         app {
-            //mainActivity "com.woody.module1.Module1MainActivity"
-            applicationName = "com.woody.module1.demo.application.App1"
+            theme "@style/AppTheme"
+            application {
+                //mainActivity "com.woody.module1.Module1MainActivity"
+                applicationName  "com.woody.module1.demo.application.App1"
+            }
             modules ':module1',
                     'com.okay.cache:cache-library:1.0.3-20190529.073900-1'
         }
 
         app2 {
             name ':app2'
-            applicationName = "com.woody.module2.demo.application.App2"
-            mainActivity ".design.MainActivity"
-            //applicationId 'com.okay.module2'
+            application {
+                applicationName  "com.woody.module2.demo.application.App2"
+                mainActivity ".design.MainActivity"
+                //applicationId 'com.okay.module2'
+            }
             modules ':module1',
                     ':module2'
-
         }
 
     }
@@ -75,18 +80,23 @@ appConfig {
     modules {
         module {
             name ":module1"
-            applicationId "com.woody.module1"
-            mainActivity ".Module1MainActivity"
-            applicationName = "com.woody.commonbusiness.application.CommonApplication"
+            application {
+                applicationId "com.woody.module1"
+                mainActivity ".Module1MainActivity"
+                applicationName "com.woody.commonbusiness.application.CommonApplication"
+            }
             isRunAlone false
             runAloneChildModules ':module2',
-                    'com.okay.module3:test-library:1.0.3'
+                    'com.okay.cache:cache-library:1.0.3-20190529.073900-1'
         }
 
         module2 {
-            applicationId "com.woody.module2"
-            mainActivity ".Module2MainActivity"
-            applicationName = "com.woody.commonbusiness.application.CommonApplication"
+            theme "@style/AppTheme"
+            application {
+                applicationId "com.woody.module2.test"
+                mainActivity ".Module2MainActivity"
+                applicationName "com.woody.commonbusiness.application.CommonApplication"
+            }
             isRunAlone true
         }
     }
@@ -132,12 +142,18 @@ apply plugin: 'com.okay.modules.plugin'
   需要依赖的组件列表，通过修改该属性实现依赖不同的组件
 - dependMethod, String类型
   依赖的方法，默认为implementation，一般不需要配置该字段，除非有特殊需求
-- applicationId, String类型
-  动态填入applicationId。非特殊情况，建议为空
-- applicationName, String类型
-  配置启动Application（对应manifest中的application name属性）
-- mainActivity, String类型
-  配置启动Activity，为空则默认为AndroidManifest中的Activity。非特殊情况，建议为空
+- theme, String类型
+  修改当前project下AndroidManifest.xml中的application和activity中的android:theme属性，其中假如activity节点已经设置过android:theme属性值，那么忽略，只有为空才会设置。
+
+- application, 对象类型
+  当前project为AppPlugin插件类型时，执行里面设置的值
+   
+    - applicationId, String类型
+      动态填入applicationId。非特殊情况，建议为空
+    - applicationName, String类型
+      配置启动Application（对应manifest中的application name属性）
+    - mainActivity, String类型
+      配置启动Activity，为空则默认为AndroidManifest中的Activity。非特殊情况，建议为空
 
 
 > modules
@@ -146,14 +162,22 @@ apply plugin: 'com.okay.modules.plugin'
   与app中的name一致
 - isRunAlone, 布尔值
   该组件能否独立启动
-- applicationId, String类型
-  独立启动时的applicationId
 - runAloneChildModules, String列表
   独立运行时，特殊场景需要依赖其他库，提供扩展
-- applicationName, String类型
-  配置启动Application（对应manifest中的application name属性）
-- mainActivity, String类型
-  独立启动的Activity
+- theme, String类型
+  修改当前project下AndroidManifest.xml中的application和activity中的android:theme属性，其中假如activity节点已经设置过android:theme属性值，那么忽略，只有为空才会设置。
+
+- application, 对象类型
+  当前project为AppPlugin插件类型时，执行里面设置的值，也就是当isRunAlone为true，并且debugEnable为true时生效
+  
+  - applicationId, String类型
+    独立启动时的applicationId
+  - applicationName, String类型
+    配置启动Application（对应manifest中的application name属性）
+  - mainActivity, String类型
+    独立启动的Activity
+
+
 
 
 

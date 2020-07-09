@@ -31,7 +31,7 @@ buildscript {
 
     }
     dependencies {
-        classpath "com.okay.api.plugin:componentApi-plugin:1.0.1-SNAPSHOT"
+        classpath "com.okay.api.plugin:componentApi-plugin:1.0.2-SNAPSHOT"
     }
 }
 ```

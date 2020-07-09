@@ -21,7 +21,7 @@ api {
         maven {
             url gradleProperties.getProperty("maven.remote_maven_url").toString()
             credentials {
-                username gradleProperties.getProperty("maven.user")
+                username localProperties.getProperty("maven.user")
                 password localProperties.getProperty("maven.password")
             }
         }

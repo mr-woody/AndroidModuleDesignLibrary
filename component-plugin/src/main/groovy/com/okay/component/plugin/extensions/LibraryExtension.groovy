@@ -14,30 +14,12 @@ class LibraryExtension extends ModulesExtension{
         super(name)
     }
 
-    def name(String name){
-        this.name = name
-    }
-
-
     def isRunAlone(boolean isRunAlone){
         this.isRunAlone = isRunAlone
     }
 
-
-    def applicationId(String applicationId){
-        this.applicationId = applicationId
-    }
-
-    def applicationName(String applicationName){
-        this.applicationName = applicationName
-    }
-
     def runAloneChildModules(String... modules){
         this.runAloneChildModules.addAll(modules)
-    }
-
-    def mainActivity(String mainActivity){
-        this.mainActivity = mainActivity
     }
 
     @Override

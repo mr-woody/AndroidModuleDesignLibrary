@@ -4,7 +4,7 @@ import com.android.build.gradle.AppPlugin
 import com.android.build.gradle.LibraryPlugin
 import com.okay.component.plugin.config.Constants
 import com.okay.component.plugin.config.DependentType
-import com.okay.component.plugin.extensions.AppConfig
+import com.okay.component.plugin.extensions.ConfigExtension
 import com.okay.component.plugin.extensions.AppExtension
 import com.okay.component.plugin.extensions.LibraryExtension
 import com.okay.component.plugin.manifest.AppManifestStrategy
@@ -24,11 +24,11 @@ class ModulesConfigPlugin implements Plugin<Project> {
 
     @Override
     void apply(Project project) {
-        AppConfig appConfig = getAppConfigExtension(project)
+        ConfigExtension appConfig = getAppConfigExtension(project)
         configModules(project, appConfig)
     }
 
-    static void configModules(Project project, AppConfig appConfig){
+    static void configModules(Project project, ConfigExtension appConfig){
         if (appConfig == null){
             throw new NullPointerException("can not find " + Constants.EXTENSION_NAME)
         }
@@ -39,7 +39,7 @@ class ModulesConfigPlugin implements Plugin<Project> {
         if (filterList != null && filterList.size() > 0){
             AppExtension appExt = filterList.get(0)
             AppPlugin appPlugin = project.plugins.apply(AppPlugin)
-            appPlugin.extension.defaultConfig.setApplicationId(appExt.applicationId)
+            appPlugin.extension.defaultConfig.setApplicationId(appExt.application.applicationId)
             AppManifestStrategy strategy = new AppManifestStrategy(project)
             strategy.resetManifest(appExt, appPlugin, appConfig.isDebugEnable())
             dependModules(project, appExt, appConfig)
@@ -49,7 +49,7 @@ class ModulesConfigPlugin implements Plugin<Project> {
 
     }
 
-    static void dependModules(Project project, AppExtension appExt, AppConfig appConfig){
+    static void dependModules(Project project, AppExtension appExt, ConfigExtension appConfig){
         Map<String,LibraryExtension> moduleExtMap = appConfig.modules.stream().filter{
             modules ->
                 String modulesName = appExt.modules.stream().find{ it.contains(modules.name) }
@@ -67,9 +67,9 @@ class ModulesConfigPlugin implements Plugin<Project> {
         }
     }
 
-    AppConfig getAppConfigExtension(Project project){
+    ConfigExtension getAppConfigExtension(Project project){
         try{
-            return project.parent.extensions.getByName(Constants.EXTENSION_NAME) as AppConfig
+            return project.parent.extensions.getByName(Constants.EXTENSION_NAME) as ConfigExtension
         }catch (UnknownDomainObjectException ignored){
             if (project.parent != null){
                 getAppConfigExtension(project.parent)
@@ -86,7 +86,7 @@ class ModulesConfigPlugin implements Plugin<Project> {
 
             if (isDebug && moduleExt.isRunAlone){
                 AppPlugin appPlugin = project.plugins.apply(AppPlugin)
-                appPlugin.extension.defaultConfig.setApplicationId(moduleExt.applicationId)
+                appPlugin.extension.defaultConfig.setApplicationId(moduleExt.application.applicationId)
                 if (moduleExt.runAloneChildModules != null && moduleExt.runAloneChildModules.size() > 0){
                     moduleExt.runAloneChildModules.each {
                         project.dependencies.add("implementation", DependentsUtil.getDependencyName(project,it))
@@ -95,7 +95,7 @@ class ModulesConfigPlugin implements Plugin<Project> {
                 }else{
                     println("build run alone modules: [$moduleExt.name]")
                 }
-                if (moduleExt.mainActivity != null && !moduleExt.mainActivity.isEmpty()){
+                if (moduleExt.application.mainActivity != null && !moduleExt.application.mainActivity.isEmpty()){
                     AppManifestStrategy strategy = new AppManifestStrategy(project)
                     strategy.resetManifest(moduleExt, appPlugin, isDebug)
                 }

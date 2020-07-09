@@ -7,13 +7,13 @@ import org.gradle.api.Project
  * Created by yuetao.
  * App项目配置ext，用于配置项目的状态与项目的app
  */
-class AppConfig {
+class ConfigExtension {
 
     boolean debugEnable = false
     NamedDomainObjectContainer<AppExtension> apps
     NamedDomainObjectContainer<LibraryExtension> modules
 
-    AppConfig(Project project){
+    ConfigExtension(Project project){
         apps = project.container(AppExtension)
         modules = project.container(LibraryExtension)
     }
