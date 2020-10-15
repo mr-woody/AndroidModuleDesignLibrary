@@ -22,10 +22,7 @@ public class MainApplication implements IApplicationLife {
 
     @Override
     public void onCreate(Application application) {
-
-
         Log.e(TAG,"onCreate ...");
-
 
     }
 
