@@ -3,6 +3,7 @@ apply plugin: 'com.android.library'
 android {
     compileSdkVersion rootProject.ext.androids.compileSdkVersion
     defaultConfig {
+        minSdkVersion androids.minSdkVersion
         targetSdkVersion rootProject.ext.androids.targetSdkVersion
     }
     buildTypes {

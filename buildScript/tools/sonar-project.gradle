@@ -1,0 +1,56 @@
+/**************************************************Android SonarQube********************************/
+apply plugin: 'org.sonarqube'
+
+/**
+ * 获取Git 分支名
+ */
+def getGitBranch() {
+    return 'git symbolic-ref --short -q HEAD'.execute().text.trim()
+}
+
+/**
+ * 读取 Git 提交版本信息
+ * @return
+ */
+def getGitVersionInfo() {
+    return 'git rev-parse --short HEAD'.execute().text.trim()
+}
+
+
+sonarqube {
+    properties {
+        property "sonar.projectKey", "KEY_"+ project.name.toUpperCase()
+        property "sonar.projectName", project.name
+        // "sonar.branch" 需要付费版本才支持
+        // property "sonar.branch", getGitBranch()
+        def projectVersion = getGitVersionInfo()
+        if (project.hasProperty('V_NAME')) {
+            projectVersion = V_NAME
+        }
+        property "sonar.projectVersion", projectVersion  //版本号
+    }
+}
+
+subprojects {
+    // 在subprojects段中添加以下块内容
+    apply plugin: 'org.sonarqube'
+    sonarqube {
+        String regex = "(.*)/(.*)"
+        String projectKey = project.name.replaceAll(regex, "\$1:\$2")
+        String sonarModuleKey = rootProject.group + ':' + rootProject.name + ':' + projectKey
+
+        properties {
+            if (project.plugins.hasPlugin('com.android.application')) {
+                println "App is " + project.name
+            }else{
+                println "Library is " + project.name
+            }
+            property "sonar.sourceEncoding", "UTF-8"
+            property "sonar.moduleKey", sonarModuleKey
+            property "sonar.inclusions", "src/main/**" //指定了要扫描哪些文件
+            property "sonar.sources", "src" //源码
+            property "sonar.exclusions", "**/*.xml,src/test/**,src/androidTest/**,**/*Test.java" //指定哪些文件被忽略
+            property "sonar.binaries", "build/intermediates/classes,build/classes" //该属性配置的路径支持多个，但不支持通配符
+        }
+    }
+}

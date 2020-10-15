@@ -1,4 +1,4 @@
-package me.woody.commonsdk.http;
+package com.woody.commonsdk.http;
 
 import java.security.SecureRandom;
 import java.security.cert.CertificateException;
@@ -49,7 +49,6 @@ public class SSLSocketClient {
 
         @Override
         public void checkClientTrusted(X509Certificate[] chain, String authType) throws CertificateException {
-
         }
 
         @Override
