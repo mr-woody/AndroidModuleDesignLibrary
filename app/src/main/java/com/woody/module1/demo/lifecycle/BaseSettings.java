@@ -5,4 +5,5 @@ public class BaseSettings{
     public boolean isAllowScreenRoate = false;
     /** 是否允许全屏*/
     public boolean mAllowFullScreen = true;
+
 }
