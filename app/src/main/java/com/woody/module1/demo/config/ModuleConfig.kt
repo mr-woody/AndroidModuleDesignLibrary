@@ -12,6 +12,7 @@ class ModuleConfig {
         const val HOST = "${SCHEME}://scheme.woody.module1/"
         const val PACKAGE = "com.woody.module1"
 
+
         //activity
         const val URL_MODULE_MAIN_ACTIVITY = HOST + "module1/page/main"
 
@@ -21,6 +22,7 @@ class ModuleConfig {
         const val SCHEME = "router"
         const val HOST = "${SCHEME}://scheme.woody.module2/"
         const val PACKAGE = "com.woody.module2"
+
 
         //activity
         const val URL_MODULE_MAIN_ACTIVITY = HOST + "module2/page/main"
