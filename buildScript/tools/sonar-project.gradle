@@ -22,7 +22,7 @@ sonarqube {
         property "sonar.projectKey", "KEY_"+ project.name.toUpperCase()
         property "sonar.projectName", project.name
         // "sonar.branch" 需要付费版本才支持
-        property "sonar.branch.name", getGitBranch()
+        //property "sonar.branch.name", getGitBranch()
         def projectVersion = getGitVersionInfo()
         if (project.hasProperty('V_NAME')) {
             projectVersion = V_NAME

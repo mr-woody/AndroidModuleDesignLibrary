@@ -13,6 +13,5 @@ public class CommonFunction{
     public static void readyGo(Context context, Class<?> clazz) {
         Intent intent = new Intent(context, clazz);
         context.startActivity(intent);
-
     }
 }
