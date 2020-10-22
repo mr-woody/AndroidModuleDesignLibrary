@@ -22,9 +22,7 @@ public class ProcessUtils {
      * @return
      */
     public static boolean isMainProcess(Context context) {
-
         String processName = getProcessName(context);
-
         if (processName.equals(context.getPackageName())) {
             return true;
         }
