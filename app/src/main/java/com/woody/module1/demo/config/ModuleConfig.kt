@@ -14,6 +14,7 @@ class ModuleConfig {
         const val PACKAGE = "com.woody.module1"
 
 
+
         //activity
         const val URL_MODULE_MAIN_ACTIVITY = HOST + "module1/page/main"
 
