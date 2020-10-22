@@ -36,6 +36,7 @@ public class ProcessUtils {
      * @return
      */
     public static String getProcessName(Context context) {
+
         int count = 0;
         do {
             String processName = getProcessNameImpl(context);
