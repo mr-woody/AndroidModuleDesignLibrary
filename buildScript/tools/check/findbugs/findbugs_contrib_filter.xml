@@ -1,0 +1,1182 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<FindBugsFilter>
+    <!-- fb-contrib：错误说明 -->
+    <Match>
+        <!-- 此方法设置或获取具有在其他位置使用的参数名称但带有不同大小写的HttpSession属性。由于HttpSession属性区分大小写，因此这将非常令人困惑。 -->
+        <Bug pattern="IKNC_INCONSISTENT_HTTP_ATTRIBUTE_CASING" />
+    </Match>
+    <Match>
+        <!-- 此JUnit 4测试仍在使用junit.framework。*包中的类。您应该将它们切换到相应的org.junit。*类集。 -->
+        <Bug pattern="UTAO_JUNIT_ASSERTION_ODDITIES_USING_DEPRECATED" />
+    </Match>
+    <Match>
+        <!-- 此方法将堆栈跟踪打印到控制台。这是不可配置的，并导致应用程序看起来不专业。切换到使用日志记录器，以便用户能够控制日志记录的内容和位置。 -->
+        <Bug pattern="IMC_IMMATURE_CLASS_PRINTSTACKTRACE" />
+    </Match>
+    <Match>
+        <!-- 此方法使用常量整数索引访问数组或列表。 -->
+        <Bug pattern="CLI_CONSTANT_LIST_INDEX" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="LGO_LINGERING_GRAPHICS_OBJECT" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="LO_APPENDED_STRING_IN_FORMAT_STRING" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="PCOA_PARTIALLY_CONSTRUCTED_OBJECT_ACCESS" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="SNG_SUSPICIOUS_NULL_LOCAL_GUARD" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="SEC_SIDE_EFFECT_CONSTRUCTOR" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="UTAO_TESTNG_ASSERTION_ODDITIES_NO_ASSERT" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="ISB_TOSTRING_APPENDING" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="SMII_STATIC_METHOD_INSTANCE_INVOCATION" />
+    </Match>
+
+
+
+
+
+
+    <Match>
+        <!--  -->
+        <Bug pattern="BSB_BLOATED_SYNCHRONIZED_BLOCK" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="UTAO_JUNIT_ASSERTION_ODDITIES_USE_ASSERT_EQUALS" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="UTAO_TESTNG_ASSERTION_ODDITIES_ACTUAL_CONSTANT" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="MDM_RUNTIME_EXIT_OR_HALT" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="STT_STRING_PARSING_A_FIELD" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="LO_SUSPECT_LOG_CLASS" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="PMB_INSTANCE_BASED_THREAD_LOCAL" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="NAB_NEEDLESS_BOX_TO_UNBOX" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="AI_ANNOTATION_ISSUES_NEEDS_NULLABLE" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="COM_PARENT_DELEGATED_CALL" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="JPAI_TRANSACTION_ON_NON_PUBLIC_METHOD" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="SPP_NON_USEFUL_TOSTRING" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="EXS_EXCEPTION_SOFTENING_RETURN_FALSE" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="IKNC_INCONSISTENT_HTTP_PARAM_CASING" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="LO_STUTTERED_MESSAGE" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="STT_TOSTRING_STORED_IN_FIELD" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="ABC_ARRAY_BASED_COLLECTIONS" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="IMC_IMMATURE_CLASS_UPPER_PACKAGE" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="CEBE_COMMONS_EQUALS_BUILDER_ISEQUALS" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="EXS_EXCEPTION_SOFTENING_NO_CONSTRAINTS" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="SAT_SUSPICIOUS_ARGUMENT_TYPES" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="UTAO_JUNIT_ASSERTION_ODDITIES_IMPOSSIBLE_NULL" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="JPAI_INEFFICIENT_EAGER_FETCH" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="EXS_EXCEPTION_SOFTENING_HAS_CHECKED" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="MDM_STRING_BYTES_ENCODING" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="NPMC_NON_PRODUCTIVE_METHOD_CALL" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="URV_INHERITED_METHOD_WITH_RELATED_TYPES" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="SUA_SUSPICIOUS_UNINITIALIZED_ARRAY" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="IMC_IMMATURE_CLASS_NO_EQUALS" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="S508C_NO_SETLABELFOR" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="WI_MANUALLY_ALLOCATING_AN_AUTOWIRED_BEAN" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="HES_EXECUTOR_NEVER_SHUTDOWN" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="IOI_USE_OF_FILE_STREAM_CONSTRUCTORS" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="SUI_CONTAINS_BEFORE_ADD" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="COM_COPIED_OVERRIDDEN_METHOD" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="SPP_USE_CHARAT" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="ICA_INVALID_CONSTANT_ARGUMENT" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="IPU_IMPROPER_PROPERTIES_USE" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="CAAL_CONFUSING_ARRAY_AS_LIST" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="SPP_USE_BIGDECIMAL_STRING_CTOR" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="CSI_CHAR_SET_ISSUES_UNKNOWN_ENCODING" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="S508C_NULL_LAYOUT" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="NRTL_NON_RECYCLEABLE_TAG_LIB" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="PIS_POSSIBLE_INCOMPLETE_SERIALIZATION" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="UTAO_TESTNG_ASSERTION_ODDITIES_INEXACT_DOUBLE" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="NAB_NEEDLESS_BOXING_STRING_CTOR" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="IOI_DOUBLE_BUFFER_COPY" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="UAC_UNNECESSARY_API_CONVERSION_DATE_TO_INSTANT" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="JPAI_IGNORED_MERGE_RESULT" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="FII_USE_FIND_FIRST" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="NCS_NEEDLESS_CUSTOM_SERIALIZATION" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="EXS_EXCEPTION_SOFTENING_NO_CHECKED" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="IPU_IMPROPER_PROPERTIES_USE_SETPROPERTY" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="MDM_SECURERANDOM" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="SPP_USELESS_CASING" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="MDM_WAIT_WITHOUT_TIMEOUT" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="WOC_WRITE_ONLY_COLLECTION_LOCAL" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="SSCU_SUSPICIOUS_SHADED_CLASS_USE" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="PMB_POSSIBLE_MEMORY_BLOAT" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="UTAO_TESTNG_ASSERTION_ODDITIES_USE_ASSERT_NULL" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="MDM_SIGNAL_NOT_SIGNALALL" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="HCP_HTTP_REQUEST_RESOURCES_NOT_FREED_FIELD" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="SLS_SUSPICIOUS_LOOP_SEARCH" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="OI_OPTIONAL_ISSUES_CHECKING_REFERENCE" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="OC_OVERZEALOUS_CASTING" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="LII_LIST_INDEXED_ITERATING" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="NMCS_NEEDLESS_MEMBER_COLLECTION_SYNCHRONIZATION" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="JPAI_HC_EQUALS_ON_MANAGED_ENTITY" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="USS_USE_STRING_SPLIT" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="ODN_ORPHANED_DOM_NODE" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="URV_CHANGE_RETURN_TYPE" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="PCAIL_POSSIBLE_CONSTANT_ALLOCATION_IN_LOOP" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="CU_CLONE_USABILITY_THROWS" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="UP_UNUSED_PARAMETER" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="LO_NON_PRIVATE_STATIC_LOGGER" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="WI_DUPLICATE_WIRED_TYPES" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="AIOB_ARRAY_INDEX_OUT_OF_BOUNDS" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="UTAO_TESTNG_ASSERTION_ODDITIES_USE_ASSERT_NOT_EQUALS" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="LUI_USE_SINGLETON_LIST" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="BED_HIERARCHICAL_EXCEPTION_DECLARATION" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="FPL_FLOATING_POINT_LOOPS" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="JXI_GET_ENDPOINT_CONSUMES_CONTENT" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="CU_CLONE_USABILITY_MISMATCHED_RETURN" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="CTU_CONFLICTING_TIME_UNITS" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="UTAO_TESTNG_ASSERTION_ODDITIES_USE_ASSERT_EQUALS" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="UAC_UNNECESSARY_API_CONVERSION_FILE_TO_PATH" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="TR_TAIL_RECURSION" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="JXI_PARM_PARAM_NOT_FOUND_IN_PATH" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="IICU_INCORRECT_INTERNAL_CLASS_USE" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="OI_OPTIONAL_ISSUES_PRIMITIVE_VARIANT_PREFERRED" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="UTAO_JUNIT_ASSERTION_ODDITIES_BOOLEAN_ASSERT" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="SJVU_SUSPICIOUS_JDK_VERSION_USE" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="LO_SUSPECT_LOG_PARAMETER" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="FII_USE_FUNCTION_IDENTITY" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="SPP_CONVERSION_OF_STRING_LITERAL" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="RFI_SET_ACCESSIBLE" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="SPP_USE_ISNAN" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="UVA_USE_VAR_ARGS" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="USFW_UNSYNCHRONIZED_SINGLETON_FIELD_WRITES" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="SPP_EMPTY_CASING" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="UTAO_JUNIT_ASSERTION_ODDITIES_USE_ASSERT_NOT_EQUALS" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="BED_BOGUS_EXCEPTION_DECLARATION" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="SPP_NULL_BEFORE_INSTANCEOF" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="PUS_POSSIBLE_UNSUSPECTED_SERIALIZATION" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="IOI_UNENDED_ZLIB_OBJECT" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="CE_CLASS_ENVY" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="SPP_SUSPECT_STRING_TEST" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="SPP_INTERN_ON_CONSTANT" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="SPP_EQUALS_ON_STRING_BUILDER" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="URV_UNRELATED_RETURN_VALUES" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="AWCBR_ARRAY_WRAPPED_CALL_BY_REFERENCE" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="UTAO_TESTNG_ASSERTION_ODDITIES_USE_ASSERT_NOT_NULL" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="STT_TOSTRING_MAP_KEYING" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="HES_LOCAL_EXECUTOR_SERVICE" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="PMB_LOCAL_BASED_JAXB_CONTEXT" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="CSI_CHAR_SET_ISSUES_USE_STANDARD_CHARSET" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="JXI_INVALID_CONTEXT_PARAMETER_TYPE" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="UCC_UNRELATED_COLLECTION_CONTENTS" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="SPP_NON_ARRAY_PARM" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="CU_CLONE_USABILITY_OBJECT_RETURN" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="JPAI_NON_SPECIFIED_TRANSACTION_EXCEPTION_HANDLING" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="LSYC_LOCAL_SYNCHRONIZED_COLLECTION" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="SPP_STRINGBUILDER_IS_MUTABLE" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="OI_OPTIONAL_ISSUES_USES_DELAYED_EXECUTION" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="DSOC_DUBIOUS_SET_OF_COLLECTIONS" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="LO_INCORRECT_NUMBER_OF_ANCHOR_PARAMETERS" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="SCII_SPOILED_CHILD_INTERFACE_IMPLEMENTOR" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="AOM_ABSTRACT_OVERRIDDEN_METHOD" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="PL_PARALLEL_LISTS" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="OCP_OVERLY_CONCRETE_PARAMETER" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="AIOB_ARRAY_STORE_TO_NULL_REFERENCE" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="CFS_CONFUSING_FUNCTION_SEMANTICS" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="SACM_STATIC_ARRAY_CREATED_IN_METHOD" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="SCRV_SUSPICIOUS_COMPARATOR_RETURN_VALUES" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="CSI_CHAR_SET_ISSUES_USE_STANDARD_CHARSET_NAME" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="CHTH_COMMONS_HASHCODE_BUILDER_TOHASHCODE" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="JVR_JDBC_VENDOR_RELIANCE" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="DRE_DECLARED_RUNTIME_EXCEPTION" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="NIR_NEEDLESS_INSTANCE_RETRIEVAL" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="MRC_METHOD_RETURNS_CONSTANT" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="NAB_NEEDLESS_AUTOBOXING_CTOR" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="CCI_CONCURRENT_COLLECTION_ISSUES_USE_PUT_IS_RACY" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="FII_COMBINE_FILTERS" />
+    </Match>
+    <Match>
+        <!-- ExecutorService必须显式关闭大多数对象，否则，即使其他所有操作都已停止，它们的内部线程也可以阻止JVM关闭。 -->
+        <Bug pattern="HES_EXECUTOR_OVERWRITTEN_WITHOUT_SHUTDOWN" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="MUI_GET_BEFORE_REMOVE" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="JPAI_NON_PROXIED_TRANSACTION_CALL" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="DDC_DOUBLE_DATE_COMPARISON" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="NAB_NEEDLESS_AUTOBOXING_VALUEOF" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="LO_INVALID_FORMATTING_ANCHOR" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="SPP_DOUBLE_APPENDED_LITERALS" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="PSC_SUBOPTIMAL_COLLECTION_SIZING" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="UMTP_UNBOUND_METHOD_TEMPLATE_PARAMETER" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="UCPM_USE_CHARACTER_PARAMETERIZED_METHOD" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="UTAO_TESTNG_ASSERTION_ODDITIES_BOOLEAN_ASSERT" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="LSC_LITERAL_STRING_COMPARISON" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="SPP_TOSTRING_ON_STRING" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="USBR_UNNECESSARY_STORE_BEFORE_RETURN" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="DMC_DUBIOUS_MAP_COLLECTION" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="MUI_CONTAINSKEY_BEFORE_GET" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="S508C_SET_COMP_COLOR" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="CVAA_CONTRAVARIANT_ELEMENT_ASSIGNMENT" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="FII_AVOID_SIZE_ON_COLLECTED_STREAM" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="DTEP_DEPRECATED_TYPESAFE_ENUM_PATTERN" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="CSBTS_COMMONS_STRING_BUILDER_TOSTRING" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="LO_LOGGER_LOST_EXCEPTION_STACK_TRACE" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="SNG_SUSPICIOUS_NULL_FIELD_GUARD" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="CCNE_COMPARE_CLASS_EQUALS_NAME" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="ISB_EMPTY_STRING_APPENDING" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="DWI_DELETING_WHILE_ITERATING" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="IMC_IMMATURE_CLASS_LOWER_CLASS" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="SG_SLUGGISH_GUI" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="LUI_USE_COLLECTION_ADD" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="DWI_MODIFYING_WHILE_ITERATING" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="MDM_PROMISCUOUS_SERVERSOCKET" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="SPP_USELESS_TERNARY" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="SPP_NEGATIVE_BITSET_ITEM" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="SPP_USE_GET0" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="CNC_COLLECTION_NAMING_CONFUSION" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="FCCD_FIND_CLASS_CIRCULAR_DEPENDENCY" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="CC_CYCLOMATIC_COMPLEXITY" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="ITU_INAPPROPRIATE_TOSTRING_USE" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="SPP_STATIC_FORMAT_STRING" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="CVAA_CONTRAVARIANT_ARRAY_ASSIGNMENT" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="NAB_NEEDLESS_BOXING_PARSE" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="UTAO_JUNIT_ASSERTION_ODDITIES_ACTUAL_CONSTANT" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="UTAO_JUNIT_ASSERTION_ODDITIES_INEXACT_DOUBLE" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="LO_INVALID_STRING_FORMAT_NOTATION" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="BAS_BLOATED_ASSIGNMENT_SCOPE" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="SPP_STUTTERED_ASSIGNMENT" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="UAA_USE_ADD_ALL" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="JXI_UNDEFINED_PARAMETER_SOURCE_IN_ENDPOINT" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="LO_TOSTRING_PARAMETER" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="FII_USE_ANY_MATCH" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="UTAO_JUNIT_ASSERTION_ODDITIES_ASSERT_USED" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="UNNC_UNNECESSARY_NEW_NULL_CHECK" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="WEM_OBSCURING_EXCEPTION" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="CRF_CONFLATING_RESOURCES_AND_FILES" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="PRMC_POSSIBLY_REDUNDANT_METHOD_CALLS" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="SPP_USE_MATH_CONSTANT" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="UTAO_JUNIT_ASSERTION_ODDITIES_USE_ASSERT_NOT_NULL" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="UTAO_JUNIT_ASSERTION_ODDITIES_NO_ASSERT" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="MDM_SETDEFAULTLOCALE" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="SIL_SQL_IN_LOOP" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="SPP_INVALID_CALENDAR_COMPARE" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="IMC_IMMATURE_CLASS_IDE_GENERATED_PARAMETER_NAMES" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="MAC_MANUAL_ARRAY_COPY" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="IMC_IMMATURE_CLASS_BAD_SERIALVERSIONUID" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="DLC_DUBIOUS_LIST_COLLECTION" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="SPP_INVALID_BOOLEAN_NULL_CHECK" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="MUI_CALLING_SIZE_ON_SUBCONTAINER" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="OI_OPTIONAL_ISSUES_USES_ORELSEGET_WITH_NULL" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="S508C_NO_SETSIZE" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="MDM_THREAD_YIELD" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="UJM_UNJITABLE_METHOD" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="LUI_USE_GET0" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="ACEM_ABSTRACT_CLASS_EMPTY_METHODS" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="ROOM_REFLECTION_ON_OBJECT_METHODS" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="PDP_POORLY_DEFINED_PARAMETER" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="AFBR_ABNORMAL_FINALLY_BLOCK_RETURN" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="S508C_NON_ACCESSIBLE_JCOMPONENT" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="UTA_USE_TO_ARRAY" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="SEO_SUBOPTIMAL_EXPRESSION_ORDER" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="SCR_SLOPPY_CLASS_REFLECTION" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="SCA_SUSPICIOUS_CLONE_ALGORITHM" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="LO_EXCEPTION_WITH_LOGGER_PARMS" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="TBP_TRISTATE_BOOLEAN_PATTERN" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="UTWR_USE_TRY_WITH_RESOURCES" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="IMC_IMMATURE_CLASS_NO_HASHCODE" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="SGSU_SUSPICIOUS_GETTER_SETTER_USE" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="SPP_NO_CHAR_SB_CTOR" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="HCP_HTTP_REQUEST_RESOURCES_NOT_FREED_LOCAL" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="FII_AVOID_CONTAINS_ON_COLLECTED_STREAM" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="SPP_USE_GETPROPERTY" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="IOI_COPY_WITH_READER" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="MDM_BIGDECIMAL_EQUALS" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="NOS_NON_OWNED_SYNCHRONIZATION" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="MUI_USE_CONTAINSKEY" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="BL_BURYING_LOGIC" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="SPP_SERIALVER_SHOULD_BE_PRIVATE" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="STS_SPURIOUS_THREAD_STATES" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="SPP_EQUALS_ON_ENUM" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="UTAO_TESTNG_ASSERTION_ODDITIES_IMPOSSIBLE_NULL" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="SCI_SYNCHRONIZED_COLLECTION_ITERATORS" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="SPP_WRONG_COMMONS_TO_STRING_OBJECT" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="SPP_TEMPORARY_TRIM" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="NAB_NEEDLESS_BOXING_VALUEOF" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="MUC_MODIFYING_UNMODIFIABLE_COLLECTION" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="FCBL_FIELD_COULD_BE_LOCAL" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="SCSS_SUSPICIOUS_CLUSTERED_SESSION_SUPPORT" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="MDM_THREAD_FAIRNESS" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="IMC_IMMATURE_CLASS_NO_PACKAGE" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="SUI_CONTAINS_BEFORE_REMOVE" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="UTAO_JUNIT_ASSERTION_ODDITIES_USE_ASSERT_NULL" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="OPM_OVERLY_PERMISSIVE_METHOD" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="CBC_CONTAINS_BASED_CONDITIONAL" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="NCMU_NON_COLLECTION_METHOD_USE" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="ISB_INEFFICIENT_STRING_BUFFERING" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="PME_POOR_MANS_ENUM" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="JPAI_UNNECESSARY_TRANSACTION_EXCEPTION_HANDLING" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="MDM_RANDOM_SEED" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="NSE_NON_SYMMETRIC_EQUALS" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="UEC_USE_ENUM_COLLECTIONS" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="STB_STACKED_TRY_BLOCKS" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="LEST_LOST_EXCEPTION_STACK_TRACE" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="IMC_IMMATURE_CLASS_VAR_NAME" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="MUI_NULL_CHECK_ON_MAP_SUBSET_ACCESSOR" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="FII_USE_METHOD_REFERENCE" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="MDM_INETADDRESS_GETLOCALHOST" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="SPP_USE_STRINGBUILDER_LENGTH" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="S508C_NON_TRANSLATABLE_STRING" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="MDM_THREAD_PRIORITIES" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="SPP_USE_ISEMPTY" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="ITC_INHERITANCE_TYPE_CHECKING" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="SPP_USE_ZERO_WITH_COMPARATOR" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="WEM_WEAK_EXCEPTION_MESSAGING" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="SWCO_SUSPICIOUS_WAIT_ON_CONCURRENT_OBJECT" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="MDM_LOCK_ISLOCKED" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="IMC_IMMATURE_CLASS_NO_TOSTRING" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="NFF_NON_FUNCTIONAL_FIELD" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="BRPI_BACKPORT_REUSE_PUBLIC_IDENTIFIERS" />
+    </Match>
+    <Match>
+        <!--  -->
+        <Bug pattern="S508C_APPENDED_STRING" />
+    </Match>
+</FindBugsFilter>

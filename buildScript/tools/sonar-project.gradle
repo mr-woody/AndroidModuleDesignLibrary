@@ -19,7 +19,7 @@ def getGitVersionInfo() {
 
 sonarqube {
     properties {
-        property "sonar.projectKey", "KEY_"+ project.name.toUpperCase()
+        property "sonar.projectKey", project.name
         property "sonar.projectName", project.name
         // "sonar.branch" 需要付费版本才支持
         //property "sonar.branch.name", getGitBranch()
