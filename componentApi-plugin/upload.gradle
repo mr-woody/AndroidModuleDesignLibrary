@@ -1,9 +1,16 @@
 apply plugin: 'maven'
-Properties localProperties = new Properties()
-localProperties.load(project.rootProject.file('local.properties').newDataInputStream())
 
 Properties gradleProperties = new Properties()
 gradleProperties.load(project.rootProject.file('gradle.properties').newDataInputStream())
+
+def userName = ""
+def password = ""
+if(project.rootProject.file('local.properties').exists()){
+    Properties localProperties = new Properties()
+    localProperties.load(project.rootProject.file('local.properties').newDataInputStream())
+    userName = localProperties.getProperty("maven.user")
+    password = localProperties.getProperty("maven.password")
+}
 
 
 def IS_USE_LOCAL_MAVEN = gradleProperties.getProperty("maven.is_use_local_maven").toBoolean()
@@ -26,7 +33,7 @@ uploadArchives {
                 repository(url: gradleProperties.getProperty("maven.local_maven_url").toString())
             }else {
                 repository(url: gradleProperties.getProperty("maven.remote_maven_url").toString()) {
-                    authentication(userName: localProperties.getProperty("maven.user"), password: localProperties.getProperty("maven.password"))
+                    authentication(userName: userName, password: password)
                 }
             }
             pom.project {

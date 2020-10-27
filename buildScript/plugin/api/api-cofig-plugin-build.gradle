@@ -11,18 +11,24 @@ api {
 
     repositories {
 
-        Properties localProperties = new Properties()
-        localProperties.load(project.rootProject.file('local.properties').newDataInputStream())
-
         Properties gradleProperties = new Properties()
         gradleProperties.load(project.rootProject.file('gradle.properties').newDataInputStream())
+
+        def mavenUserName = ""
+        def mavenPassword = ""
+        if(project.rootProject.file('local.properties').exists()){
+            Properties localProperties = new Properties()
+            localProperties.load(project.rootProject.file('local.properties').newDataInputStream())
+            mavenUserName = localProperties.getProperty("maven.user")
+            mavenPassword = localProperties.getProperty("maven.password")
+        }
 
 
         maven {
             url gradleProperties.getProperty("maven.remote_maven_url").toString()
             credentials {
-                username localProperties.getProperty("maven.user")
-                password localProperties.getProperty("maven.password")
+                username mavenUserName
+                password mavenPassword
             }
         }
     }
