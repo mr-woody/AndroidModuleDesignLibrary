@@ -93,11 +93,6 @@ class JarUtil {
                                               List<String> classPath,
                                               CompileOptions compileOptions,
                                               boolean vars) {
-        def classpathSeparator = ";"
-        if (!System.properties['os.name'].toLowerCase().contains('windows')) {
-            classpathSeparator = ":"
-        }
-
         boolean keepParameters = vars && Jvm.current().javaVersion >= JavaVersion.VERSION_1_8
         List<String> javaFiles = new ArrayList<>()
         List<String> kotlinFiles = new ArrayList<>()
@@ -139,7 +134,7 @@ class JarUtil {
 
             if (classPath.size() > 0) {
                 args.add('-classpath')
-                args.add(classPath.join(classpathSeparator))
+                args.add(classPath.join(File.pathSeparator))
             }
 
             ExitCode exitCode = compiler.exec(System.out, (String[]) args.toArray())
@@ -152,6 +147,8 @@ class JarUtil {
             classPath.add(classesDir.absolutePath)
         }
 
+
+        /*
         if (!javaFiles.isEmpty()) {
             def command = "javac " + (keepParameters ? "-parameters" : "") + " -d . -encoding UTF-8 -target " + compileOptions.targetCompatibility.toString() + " -source " + compileOptions.sourceCompatibility.toString() + (classPath.size() > 0 ? (" -classpath " + classPath.join(classpathSeparator) + " ") : "") + javaFiles.join(' ')
             def p = (command).execute(null, classesDir)
@@ -163,6 +160,37 @@ class JarUtil {
 
             if (p.exitValue() != 0) {
                 throw new GradleException("Failure to compile api java source to bytecode: \n" + p.err.text + "\nExecute command:\n" + command)
+            }
+        }
+        */
+
+        // 修复bug
+        // 1、超时时间是一个问题
+        // 2、假如项目中需要编译的java文件中绝对路径目录(文件夹命中中存在空格符号)，使用javac -d 路径\xxx.java 编译失败
+        if (!javaFiles.isEmpty()) {
+            LinkedList<String> paras = new LinkedList();
+            paras.add('javac')
+            paras.add('-parameters')
+            paras.add('-d')
+            paras.add(classesDir.getAbsolutePath())
+            paras.add('-encoding')
+            paras.add('UTF-8')
+            paras.add('-target')
+            paras.add(compileOptions.targetCompatibility.toString())
+            paras.add('-source')
+            paras.add(compileOptions.sourceCompatibility.toString())
+
+            paras.add('-classpath')
+            paras.add(classPath.join(File.pathSeparator))
+            paras.addAll(javaFiles);
+
+            String[] javacParameters = (String[]) paras.toArray(new String[paras.size()])
+
+            Runtime runtime = Runtime.getRuntime()
+            def p = runtime.exec(javacParameters, null, classesDir);
+            def result = p.waitFor()
+            if (result != 0) {
+                throw new GradleException("Failure to compile mis java source to bytecode: \n" + p.err.text + "\nExecute command:\n" + javacParameters)
             }
         }
 
