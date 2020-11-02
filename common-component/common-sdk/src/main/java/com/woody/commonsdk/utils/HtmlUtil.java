@@ -73,6 +73,8 @@ public class HtmlUtil {
     public static String createHtmlData(String html, List<String> cssList, List<String> jsList) {
         final String css = HtmlUtil.createCssTag(cssList);
         final String js = HtmlUtil.createJsTag(jsList);
+
+        System.out.println("开发完成后，提交pull request（PR）请求合并到dev_feature_branch，开发完成后，提交pull request（PR）请求合并到dev_feature_branch，开发完成后，提交pull request（PR）,开发完成后，提交pull request（PR）请求合并到dev_feature_branch，开发完成后，提交pull request（PR）请求合并到dev_feature_branch，开发完成后，提交pull request（PR）,开发完成后，提交pull request（PR）请求合并到dev_feature_branch，开发完成后，提交pull request（PR）请求合并到dev_feature_branch，开发完成后，提交pull request（PR）,开发完成后，提交pull request（PR）请求合并到dev_feature_branch，开发完成后，提交pull request（PR）请求合并到dev_feature_branch，开发完成后，提交pull request（PR）开发完成后，提交pull request（PR）请求合并到dev_feature_branch，开发完成后，提交pull request（PR）请求合并到dev_feature_branch，开发完成后，提交pull request（PR）");
         return css.concat(HIDE_HEADER_STYLE).concat(html).concat(js);
     }
 }
