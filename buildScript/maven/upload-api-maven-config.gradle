@@ -2,14 +2,22 @@
 apply plugin: 'maven'
 apply plugin: 'com.okay.upload.plugin'
 maven {
+
+    def mavenUserName = ""
+    def mavenPassword = ""
+    if(project.rootProject.file('local.properties').exists()){
+        Properties localProperties = new Properties()
+        localProperties.load(project.rootProject.file('local.properties').newDataInputStream())
+        mavenUserName = localProperties.getProperty("maven.user")
+        mavenPassword = localProperties.getProperty("maven.password")
+    }
+
     repository{
         name "okayclient_snapshot"
         url "http://10.60.0.100:8081/repository/okayclient_snapshot/"
-        userName "yuetao"
+        userName mavenUserName
         userPassword {
-            def properties = new Properties()
-            properties.load(project.rootProject.file('local.properties').newDataInputStream())
-            properties.getProperty("maven.password")
+            mavenPassword
         }
 
         module{

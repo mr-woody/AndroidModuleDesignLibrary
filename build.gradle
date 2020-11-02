@@ -17,7 +17,7 @@ buildscript {
         classpath "com.okay.component.plugin:component-plugin:1.0.31-SNAPSHOT"
         classpath "com.okay.register.plugin:autoregister-plugin:1.0.0-SNAPSHOT"
 
-        classpath 'com.okay.supercross.plugin:supercross-plugin:1.0.3-SNAPSHOT'
+        classpath 'com.okay.supercross.plugin:supercross-plugin:1.1.0-SNAPSHOT'
 
         //api接口解决方案插件
         classpath 'com.okay.api.plugin:componentApi-plugin:1.0.3-SNAPSHOT'
@@ -43,6 +43,18 @@ allprojects {
     }
 }
 
+subprojects {
+    configurations.all {
+        resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+            def requested = details.requested
+            if (requested.group == 'com.android.support') {
+                if (!requested.name.startsWith("multidex")) {
+                    details.useVersion versions.supportLibraryVersion
+                }
+            }
+        }
+    }
+}
 
 task clean(type: Delete) {
     delete rootProject.buildDir
