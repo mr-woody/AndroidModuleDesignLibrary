@@ -5,7 +5,7 @@
     <!--　检查源码每行的长度 -->
     <module name="LineLength">
         <property name="severity" value="warning"/>
-        <property name="max" value="80"/>
+        <property name="max" value="120"/>
         <property name="ignorePattern" value="^ *\* *[^ ]+$"/>
         <property name="tabWidth" value="8"/>
     </module>
@@ -230,12 +230,14 @@
             <property name="fileMaximum" value="2000"/>
             <property name="methodMaximum" value="50"/>
         </module>
+
+
         <!-- 检查局部final变量的名称是否遵守命名规约
             format: 定义局部常量的命名规则 -->
         <module name="LocalFinalVariableName">
             <property name="severity" value="warning"/>
             <property name="format" value="^[A_Z][A-Z0-9]*(_[A_Z0-9]+)*$"/>
-            <property name="tokens" value="VARIABLE_DEF,PARAMETER_DEF,RESOURCE"/>
+            <property name="tokens" value="PARAMETER_DEF,RESOURCE"/>
         </module>
         <!--　检查方法名称是否遵守命名规约
             format: 定义方法名的命名规则 -->
@@ -243,7 +245,7 @@
             <property name="severity" value="warning"/>
             <property name="allowClassName" value="false"/>
             <property name="applyToPackage" value="true"/>
-            <property name="format" value="^[a-z]+(\.[a-z][a-z0-9]*)*$"/>
+            <property name="format" value="^[a-z][a-zA-Z0-9]*$"/>
             <property name="applyToPublic" value="true"/>
             <property name="applyToProtected" value="true"/>
             <property name="applyToPrivate" value="true"/>
@@ -291,12 +293,12 @@
         <!--　限制for循环的嵌套层数（默认值为1） -->
         <module name="NestedForDepth">
             <property name="severity" value="warning"/>
-            <property name="max" value="1"/>
+            <property name="max" value="2"/>
         </module>
         <!--　限制if-else代码块的嵌套层数（默认值为1） -->
         <module name="NestedIfDepth">
             <property name="severity" value="warning"/>
-            <property name="max" value="1"/>
+            <property name="max" value="2"/>
         </module>
         <!--　限制try代码块的嵌套层数（默认值为1）-->
         <module name="NestedTryDepth">
