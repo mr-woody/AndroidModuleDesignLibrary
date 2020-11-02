@@ -22,6 +22,8 @@ class MainActivity : AppCompatActivity() {
         RouterConfiguration.get().callback = object:RouteCallback{
             override fun notFound(uri: Uri?, e: NotFoundException?) {
                 Toast.makeText(applicationContext,e?.message,Toast.LENGTH_LONG).show()
+                Toast.makeText(applicationContext,e?.message+"开发完成后，提交pull request（PR）请求合并到dev_feature_branch，开发完成后，提交pull request（PR）请求合并到dev_feature_branch，开发完成后，提交pull request（PR）请求合并到dev_feature_branch，开发完成后，提交pull request（PR）请求合并到dev_feature_branch，开发完成后，提交pull request（PR）请求合并到dev_feature_branch开发完成后，提交pull request（PR）请求合并到dev_feature_branch",Toast.LENGTH_LONG).show()
+
             }
 
             override fun onOpenSuccess(uri: Uri?, rule: RouteRule<out RouteRule<*, *>, *>?) {}
