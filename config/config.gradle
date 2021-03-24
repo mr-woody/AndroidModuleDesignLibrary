@@ -1,27 +1,9 @@
 ext {
-    applicationId = 'com.woody.module1.demo.design'
-
     androids = [
             compileSdkVersion: 26,
             minSdkVersion    : 19,
             targetSdkVersion : 22,
             multiDexEnabled : true
-    ]
-
-
-    signInfo = [
-            release: [
-                    storeFilePath: '../keystore/component.keystore',
-                    storePassword: 'dianping123',
-                    keyAlias     : 'wddp_keystore',
-                    keyPassword  : 'dianping123'
-            ],
-            debug  : [
-                    storeFilePath: '../keystore/component_debug.keystore',
-                    storePassword: 'dianping123',
-                    keyAlias     : 'wddp_keystore_debug',
-                    keyPassword  : 'dianping123'
-            ]
     ]
 
 

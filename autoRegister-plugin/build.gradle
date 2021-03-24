@@ -22,10 +22,10 @@ ext {
     //component-plugin
     pom_project = [
             version : '1.0.0-SNAPSHOT',
-            group_id : "com.okay.register.plugin",
+            group_id : "com.woodys.register.plugin",
             artifact_id : "autoregister-plugin",
             description : "Android autoregister-plugin library"
     ]
 }
 
-apply from: "upload.gradle"
+//apply from: "upload.gradle"

@@ -24,10 +24,10 @@ ext {
     //component-plugin
     pom_project = [
             version : '1.0.2-SNAPSHOT',
-            group_id : "com.okay.component.api",
+            group_id : "com.woodys.component.api",
             artifact_id : "component-impl",
             description : "Android component-impl library"
     ]
 }
 
-apply from: "../upload.gradle"
+//apply from: "../upload.gradle"

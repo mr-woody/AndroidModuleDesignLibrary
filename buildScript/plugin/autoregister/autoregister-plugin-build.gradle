@@ -1,9 +1,9 @@
-apply plugin: 'com.okay.auto-register'
+apply plugin: 'com.woodys.auto-register'
 
 ext.registerInfoList = [
         [
-                'scanInterface'             : 'com.okay.component.api.IApplicationLife'
-                , 'codeInsertToClassName'   : 'com.okay.component.api.ApplicationManager'
+                'scanInterface'             : 'com.woodys.component.api.IApplicationLife'
+                , 'codeInsertToClassName'   : 'com.woodys.component.api.ApplicationManager'
                 , 'registerMethodName'      : 'register' //非static方法
         ]
 ]

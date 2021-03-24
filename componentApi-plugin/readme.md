@@ -27,11 +27,11 @@
 buildscript {
     repositories {
         ...
-        maven{ url "http://10.60.0.100:8081/repository/okayclient_snapshot/"}
+        maven { url 'https://jitpack.io' }
 
     }
     dependencies {
-        classpath "com.okay.api.plugin:componentApi-plugin:1.0.3-SNAPSHOT"
+        classpath 'com.github.mr-woody.AndroidModuleDesignLibrary:componentApi-plugin:x.x.x'
     }
 }
 ```
@@ -49,7 +49,7 @@ apply from: 'buildScript/plugin/api/api-cofig-plugin-build.gradle'
 2.在根目录创建buildScript/plugin/api/api-cofig-plugin-build.gradle，加入如下配置：
 
 ```
-apply plugin: 'com.okay.api.plugin'
+apply plugin: 'com.woodys.api.plugin'
 
 api {
 
@@ -131,12 +131,12 @@ api {
 
 * **api 服务提供模块包结构示例图**
 
-![api 服务提供模块包结构示例图 ](http://git.okjiaoyu.cn/stu/androidmoduledesign/raw/develop_1.0.3/componentApi-plugin/image/E1DFB9F1-FA93-4CFC-91F4-67AB0FC3D558.png)
+![api 服务提供模块包结构示例图 ](/image/E1DFB9F1-FA93-4CFC-91F4-67AB0FC3D558.png)
 
 
 * **api 服务提供模块，api对外暴露模块上传maven截图**
 
-![api 服务提供模块，api对外暴露模块上传maven截图](http://git.okjiaoyu.cn/stu/androidmoduledesign/raw/develop_1.0.3/componentApi-plugin/image/4747BEFC-EBDA-43F6-AB36-3D4C01E084FD.png)
+![api 服务提供模块，api对外暴露模块上传maven截图](/image/4747BEFC-EBDA-43F6-AB36-3D4C01E084FD.png)
 
 
 ### 获取接口、实体类和工具类
@@ -162,5 +162,5 @@ if(null!=apiActionCallback){
 
 
 ```
-备注：SuperCross使用请参考： [SuperCross](http://git.okjiaoyu.cn/stu/oksupercross/) 的用法
+备注：SuperCross使用请参考： [SuperCross](https://github.com/mr-woody/OkSuperCross/) 的用法
 

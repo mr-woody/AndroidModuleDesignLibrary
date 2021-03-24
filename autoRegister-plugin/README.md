@@ -23,8 +23,8 @@
 - codeInsertToMethodName: 字符串，方法名，注册代码将插入到此方法中。若未指定，则默认为static块,(方法名为：<clinit>)
 - registerMethodName    : (必须)字符串，方法名，静态方法，方法的参数为 scanInterface
 - scanSuperClasses      : 字符串或字符串数组，类名（完整类名），所有直接继承此类的子类将会被收集
-- include               : 数组，需要扫描的类(正则表达式，包分隔符用/代替，如： com/okay/.*)，默认为所有的类
-- exclude               : 数组，不需要扫描的类(正则表达式，包分隔符用/代替，如： com/okay/.*)，
+- include               : 数组，需要扫描的类(正则表达式，包分隔符用/代替，如： com/woodys/.*)，默认为所有的类
+- exclude               : 数组，不需要扫描的类(正则表达式，包分隔符用/代替，如： com/woodys/.*)，
 
 ## 功能简介
 
@@ -52,11 +52,12 @@ public class CategoryManager {
 ```groovy
 buildscript {
     repositories {
-        jcenter()
+        //...
+        maven { url 'https://jitpack.io' }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.0.0'
-        classpath 'com.okay:autoregister:x.x.x'
+        classpath 'com.github.mr-woody.AndroidModuleDesignLibrary:autoRegister-plugin:x.x.x'
     }
 }
 ```
@@ -68,13 +69,13 @@ autoregister {
     registerInfo = [
         [
             'scanInterface'             : 'com.billy.app_lib_interface.ICategory'
-            , 'scanSuperClasses'        : ['com.okay.autoregister.demo.BaseCategory']
+            , 'scanSuperClasses'        : ['com.woodys.autoregister.demo.BaseCategory']
             , 'codeInsertToClassName'   : 'com.billy.app_lib_interface.CategoryManager'
             //未指定codeInsertToMethodName，默认插入到static块中，故此处register必须为static方法
             , 'registerMethodName'      : 'register' //
             , 'exclude'                 : [
                 //排除的类，支持正则表达式（包分隔符需要用/表示，不能用.）
-                'com.okay.autoregister.demo.BaseCategory'.replaceAll('\\.', '/') //排除这个基类
+                'com.woodys.autoregister.demo.BaseCategory'.replaceAll('\\.', '/') //排除这个基类
             ]
         ],
         [

@@ -1,4 +1,4 @@
-apply plugin: 'com.okay.api.plugin'
+apply plugin: 'com.woodys.api.plugin'
 
 api {
 
