@@ -4,7 +4,7 @@
 
 一、插件组成情况：
 
- 其中分为两个插件，分别为：com.okay.appconfig.plugin（插件配置信息管理和配置信息有效性检测） 和 com.okay.modules.plugin（负责模块化构建）
+ 其中分为两个插件，分别为：com.woodys.appconfig.plugin（插件配置信息管理和配置信息有效性检测） 和 com.woodys.modules.plugin（负责模块化构建）
  
 二、功能
 
@@ -24,16 +24,16 @@
 buildscript {
     repositories {
         ...
-        maven{ url "http://10.60.0.100:8081/repository/okayclient_snapshot/"}
+        maven { url 'https://jitpack.io' }
 
     }
     dependencies {
-        classpath "com.okay.component.plugin:component-plugin:1.0.31-SNAPSHOT"
+        classpath 'com.github.mr-woody.AndroidModuleDesignLibrary:component-plugin:x.x.x'
     }
 }
 ```
 
-二. 接入com.okay.appconfig.plugin（插件配置信息管理和配置信息有效性检测）
+二. 接入com.woodys.appconfig.plugin（插件配置信息管理和配置信息有效性检测）
 
 1.在项目根目录build.gradle最下方加入：
 
@@ -46,7 +46,7 @@ apply from: 'buildScript/appcofig-plugin-build.gradle'
 
 ```
 //加上插件引用
-apply plugin: 'com.okay.appconfig.plugin'
+apply plugin: 'com.woodys.appconfig.plugin'
 
 //示例配置，根据项目情况自己定制
 appConfig {
@@ -61,7 +61,7 @@ appConfig {
                 applicationName  "com.woody.module1.demo.application.App1"
             }
             modules ':module1',
-                    'com.okay.cache:cache-library:1.0.3-20190529.073900-1'
+                    'com.woodys.cache:cache-library:1.0.3-20190529.073900-1'
         }
 
         app2 {
@@ -69,7 +69,7 @@ appConfig {
             application {
                 applicationName  "com.woody.module2.demo.application.App2"
                 mainActivity ".design.MainActivity"
-                //applicationId 'com.okay.module2'
+                //applicationId 'com.woodys.module2'
             }
             modules ':module1',
                     ':module2'
@@ -87,7 +87,7 @@ appConfig {
             }
             isRunAlone false
             runAloneChildModules ':module2',
-                    'com.okay.cache:cache-library:1.0.3-20190529.073900-1'
+                    'com.woodys.cache:cache-library:1.0.3-20190529.073900-1'
         }
 
         module2 {
@@ -103,20 +103,20 @@ appConfig {
 }
 
 ```
-三.接入com.okay.modules.plugin（负责模块化构建）
+三.接入com.woodys.modules.plugin（负责模块化构建）
 
 1.在对应子模块module 和 壳App中的build.gradle最开始位置加入（也就是apply plugin: 'com.android.application' 或者 apply plugin: 'com.android.library'的位置）,加上如下代码：
 
 ```
 //apply plugin: 'com.android.application'（这里需要删除）
-apply plugin: 'com.okay.modules.plugin'
+apply plugin: 'com.woodys.modules.plugin'
 
 
 或者
 
 
 //apply plugin: 'com.android.library'（这里需要删除）
-apply plugin: 'com.okay.modules.plugin'
+apply plugin: 'com.woodys.modules.plugin'
 
 ```
 

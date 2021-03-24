@@ -19,15 +19,14 @@ repositories{
 }
 
 
-
 ext {
     //componentApi-plugin
     pom_project = [
             version : '1.0.3-SNAPSHOT',
-            group_id : "com.okay.api.plugin",
+            group_id : "com.woodys.api.plugin",
             artifact_id : "componentApi-plugin",
             description : "Android componentApi-plugin library"
     ]
 }
 
-apply from: "upload.gradle"
+//apply from: "upload.gradle"

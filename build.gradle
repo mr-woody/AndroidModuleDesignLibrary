@@ -2,28 +2,21 @@
 buildscript {
     apply from: 'config/config.gradle'
     repositories {
-        mavenLocal()
+        maven { url 'https://jitpack.io' }
         maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
         maven { url 'http://maven.aliyun.com/nexus/content/repositories/jcenter' }
-        maven{ url "http://10.60.0.100:8081/repository/okayclient_snapshot/"}
-        maven{ url "http://10.60.0.100:8081/repository/okayclient/"}
         google()
         jcenter()
+        mavenLocal()
 
     }
     dependencies {
         classpath "com.android.tools.build:gradle:${versions.gradleVersion}"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlinVersion}"
-        classpath "com.okay.component.plugin:component-plugin:1.0.31-SNAPSHOT"
-        classpath "com.okay.register.plugin:autoregister-plugin:1.0.0-SNAPSHOT"
 
-        classpath 'com.okay.supercross.plugin:supercross-plugin:1.1.0-SNAPSHOT'
+        classpath "com.github.dcendents:android-maven-gradle-plugin:2.1"
+        classpath 'com.github.mr-woody.UploadMavenPlugin:jitpack:1.2.0'
 
-        //api接口解决方案插件
-        classpath 'com.okay.api.plugin:componentApi-plugin:1.0.3-SNAPSHOT'
-
-        //sonarqube代码规约检测插件
-        classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:3.0"
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -34,9 +27,6 @@ allprojects {
         mavenLocal()
         maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
         maven { url 'http://maven.aliyun.com/nexus/content/repositories/jcenter' }
-        maven{ url "http://10.60.0.100:8081/repository/okayclient_snapshot/"}
-        //umeng
-        maven { url 'http://dl.bintray.com/umsdk/release' }
         google()
         jcenter()
 
@@ -60,13 +50,28 @@ task clean(type: Delete) {
     delete rootProject.buildDir
 }
 
-//按照源码的方式进行配置
-apply from: 'buildScript/plugin/module_cofig/appcofig-local-plugin-build.gradle'
-//动态注入代码，解决IApplicationLife动态注册的问题
-apply from: 'buildScript/plugin/autoregister/autoregister-plugin-build.gradle'
-// api接口解决方案插件
-apply from: 'buildScript/plugin/api/api-cofig-plugin-build.gradle'
-
-//sonar方式进行配置
-apply from: 'buildScript/tools/sonar-project.gradle'
+apply plugin: 'jitpack.io.upload'
+jitpack{
+    module{
+        //对应的library name
+        name "autoRegister-plugin"
+        //对应格式为com.github.[YourUsername],例如：https://github.com/mr-woody/UploadMavenPlugin ,那么对应的UserName为：mr-woody
+        group "com.github.mr-woody"
+    }
+    module{
+        //对应的library name
+        name "component-impl"
+        group "com.github.mr-woody"
+    }
+    module{
+        //对应的library name
+        name "component-plugin"
+        group "com.github.mr-woody"
+    }
+    module{
+        //对应的library name
+        name "componentApi-plugin"
+        group "com.github.mr-woody"
+    }
+}
 
